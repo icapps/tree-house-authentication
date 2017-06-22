@@ -1,0 +1,43 @@
+{
+  "name": "tree-house-authentication",
+  "version": "1.0.0",
+  "description": "Tree House Authentication module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./build/index.js",
+    "build": "yarn cleanup && tsc",
+    "cleanup": "rm -rf ./build",
+    "serve": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts",
+    "lint": "tslint 'src/**/*.ts'"
+  },
+  "dependencies": {
+    "ts-node": "^3.0.6",
+    "bcrypt-nodejs": "0.0.3",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.2.1",
+    "passport-local": "^1.0.0",
+    "tree-house": "^0.1.5"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^4.0.0",
+    "@types/node": "^8.0.1",
+    "@types/sequelize": "^3.4.52",
+    "chai": "^3.5.0",
+    "chai-things": "^0.2.0",
+    "coveralls": "^2.13.1",
+    "istanbul": "^1.1.0-alpha.1",
+    "mocha": "^3.3.0",
+    "nodemon": "^1.11.0",
+    "pre-commit": "^1.2.2",
+    "supertest": "^3.0.0",
+    "ts-node": "^3.0.6",
+    "tslint": "^5.4.3",
+    "tslint-config-airbnb": "^5.2.0",
+    "typescript": "^2.3.4"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "author": "Brent Van Geertruy <brentvangeertruy@outlook.com>",
+  "license": "MIT"
+}
