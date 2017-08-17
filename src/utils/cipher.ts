@@ -27,7 +27,7 @@ export function comparePassword(password: String, hashedPw: String): boolean {
  * @param {Object} jwtSettings
  * @returns {Object}
  */
-export function createWebtoken(user: Object, jwtSettings: Object): any {
+export function createWebtoken(user: any, jwtSettings: any): any {
   return jsonwebtoken.sign({ user },
     jwtSettings.secret, {
       algorithm: jwtSettings.algorithm,

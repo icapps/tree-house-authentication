@@ -1,8 +1,8 @@
 {
   "name": "tree-house-authentication",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Tree House Authentication module",
-  "main": "index.js",
+  "main": "./build/index.js",
   "scripts": {
     "start": "node ./build/index.js",
     "build": "yarn cleanup && tsc",
