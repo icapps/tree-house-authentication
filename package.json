@@ -1,6 +1,6 @@
 {
   "name": "tree-house-authentication",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Tree House Authentication module",
   "main": "./build/index.js",
   "scripts": {
@@ -11,12 +11,15 @@
     "serve": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts",
     "lint": "tslint 'src/**/*.ts'"
   },
+  "precommit": [
+    "lint"
+  ],
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "passport": "^0.3.2",
     "passport-jwt": "^2.2.1",
     "passport-local": "^1.0.0",
-    "tree-house": "^0.1.5",
+    "tree-house": "1.0.0",
     "jsonwebtoken": "^7.4.1",
     "ts-node": "^3.0.6"
   },

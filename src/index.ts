@@ -1,4 +1,4 @@
-import * as PassportAuthentication from './lib/passport.authentication';
+import PassportAuthentication from './lib/passport.authentication';
 import * as CipherUtils from './utils/cipher';
 
 /**
