@@ -5,6 +5,6 @@ import * as CipherUtils from './utils/cipher';
  * Export all exposed variables
  */
 module.exports = {
-    PassportAuthentication,
-    CipherUtils,
+  PassportAuthentication,
+  CipherUtils,
 };

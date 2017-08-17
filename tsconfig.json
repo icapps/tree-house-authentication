@@ -1,33 +1,36 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "es6",
-        "sourceMap": true,
-        "outDir": "./build",
-        "rootDir": "./src",
-        "removeComments": true,
-        "strict": true,
-        "strictNullChecks": false,
-        "noImplicitThis": false,
-        "alwaysStrict": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "noImplicitReturns": true,
-        "noFallthroughCasesInSwitch": true,
-        "noImplicitAny": false,
-        "moduleResolution": "node",
-        "baseUrl": "./",
-        "paths": {},
-        "rootDirs": [],
-        "typeRoots": [
-            "node_modules/@types"
-        ],
-        "declaration": true,
-        "allowSyntheticDefaultImports": true,
-        "sourceRoot": "./src",
-        "mapRoot": "./build",
-        "inlineSources": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true
-    }
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "sourceMap": true,
+    "outDir": "./build",
+    "rootDir": "./src",
+    "removeComments": true,
+
+    "strict": true,
+    "strictNullChecks": false,
+    "noImplicitThis": false,
+    "alwaysStrict": true,
+
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": false,
+
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "paths": {},
+    "rootDirs": [],
+    "typeRoots": ["node_modules/@types"],
+    "declaration": true,
+    "allowSyntheticDefaultImports": true,
+
+    "sourceRoot": "./src",
+    "mapRoot": "./build",
+    "inlineSources": true,
+
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  }
 }

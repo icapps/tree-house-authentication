@@ -1,13 +1,14 @@
-import jsonwebtoken from 'jsonwebtoken';
-import bcryptNodejs from 'bcrypt-nodejs';
+import * as jsonwebtoken from 'jsonwebtoken';
+import * as bcryptNodejs from 'bcrypt-nodejs';
+
 
 /**
  * Get a hashed password
  * @param password
  * @return {String}
  */
-export function getHashedPassword(password): string {
-    return bcryptNodejs.hashSync(password);
+export function getHashedPassword(password: String): string {
+  return bcryptNodejs.hashSync(password);
 }
 
 /**
@@ -16,21 +17,22 @@ export function getHashedPassword(password): string {
  * @param hashedPw
  * @returns {Boolean} isPasswordSame
  */
-export function comparePassword(password, hashedPw): boolean {
-    return bcryptNodejs.compareSync(password, hashedPw);
+export function comparePassword(password: String, hashedPw: String): boolean {
+  return bcryptNodejs.compareSync(password, hashedPw);
 }
 
 /**
  * Create a new json webtoken
- * @param user
+ * @param {Object} user
+ * @param {Object} jwtSettings
  * @returns {Object}
  */
-export function createWebtoken(user, jwtSettings): any {
-    return jsonwebtoken.sign({ user },
-        jwtSettings.secret, {
-            algorithm: jwtSettings.algorithm,
-            expiresIn: `${jwtSettings.expiresIn}s`, // Expires in seconds
-            issuer: jwtSettings.issuer,
-            audience: jwtSettings.audience,
-        });
+export function createWebtoken(user: Object, jwtSettings: Object): any {
+  return jsonwebtoken.sign({ user },
+    jwtSettings.secret, {
+      algorithm: jwtSettings.algorithm,
+      expiresIn: `${jwtSettings.expiresIn}s`, // Expires in seconds
+      issuer: jwtSettings.issuer,
+      audience: jwtSettings.audience,
+    });
 }
