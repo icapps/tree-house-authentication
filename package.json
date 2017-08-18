@@ -1,6 +1,6 @@
 {
   "name": "tree-house-authentication",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Tree House Authentication module",
   "main": "./build/src/index.js",
   "jest": {

@@ -1,2 +1,9 @@
 src
 examples
+tsconfig.json
+package-lock.json
+.editorconfig
+.npmrc
+yarn.lock
+yarn-error.log
+.vscode
