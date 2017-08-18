@@ -4,7 +4,7 @@
     "target": "es6",
     "sourceMap": true,
     "outDir": "./build",
-    "rootDir": "./src",
+    "rootDir": "./",
     "removeComments": true,
 
     "strict": true,

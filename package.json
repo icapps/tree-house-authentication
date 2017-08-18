@@ -1,38 +1,62 @@
 {
   "name": "tree-house-authentication",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "Tree House Authentication module",
-  "main": "./build/index.js",
+  "main": "./build/src/index.js",
+  "jest": {
+    "notify": true,
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
+      }
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json"
+    ],
+    "transform": {
+      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "/__tests__/.*\\.(ts|tsx|js)$"
+  },
   "scripts": {
     "start": "node ./build/index.js",
     "build": "yarn cleanup && tsc",
     "cleanup": "rm -rf ./build",
     "prepublish": "npm run build",
     "serve": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts",
-    "lint": "tslint 'src/**/*.ts'"
+    "lint": "tslint 'src/**/*.ts'",
+    "test": "jest --coverage --forceExit"
   },
   "precommit": [
     "lint"
   ],
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
+    "jsonwebtoken": "^7.4.1",
     "passport": "^0.3.2",
     "passport-jwt": "^2.2.1",
     "passport-local": "^1.0.0",
-    "tree-house": "1.0.0",
-    "jsonwebtoken": "^7.4.1",
     "ts-node": "^3.0.6"
   },
   "devDependencies": {
+    "@types/jest": "^20.0.2",
     "@types/node": "^8.0.1",
     "chai": "^3.5.0",
     "chai-things": "^0.2.0",
     "coveralls": "^2.13.1",
     "istanbul": "^1.1.0-alpha.1",
+    "jest": "^20.0.4",
     "mocha": "^3.3.0",
     "nodemon": "^1.11.0",
     "pre-commit": "^1.2.2",
     "supertest": "^3.0.0",
+    "ts-jest": "^20.0.10",
     "ts-node": "^3.0.6",
     "tslint": "^5.4.3",
     "tslint-config-airbnb": "^5.2.0",

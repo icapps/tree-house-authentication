@@ -1,12 +1,12 @@
-import passport from 'passport';
-import { Strategy as LocalStrategy } from 'passport-local';
+import * as passport from 'passport';
+import * as LocalStrategy from 'passport-local';
 import { ExtractJwt, Strategy as JwtStrategy } from 'passport-jwt';
 
 import {
   DEFAULT_LOCAL_STRATEGY_CONFIG as DEF_LOCAL,
   DEFAULT_JWT_CONFIG as DEF_JWT,
 } from './passport.config';
-import { BaseAuthentication } from 'tree-house';
+import BaseAuthentication from './base.authentication';
 import { createWebtoken } from './../utils/cipher';
 
 
@@ -19,17 +19,19 @@ export default class PassportAuthentication extends BaseAuthentication {
    * @param {any} fn
    * @memberOf PassportAuthenticaton
    */
-  setLocalStrategy(localConfig = DEF_LOCAL, fn) {
+  setLocalStrategy = (localConfig = DEF_LOCAL, fn) => {
+    // console.log('Set a new strategy', fn);
     this.localStrategyConfig = Object.assign({}, localConfig, {
       passReqToCallback: false,
     });
 
     // Convert the callback function needed to a function returning a Promise
-    passport.use(new LocalStrategy(this.localStrategyConfig, (email, password, next) => {
-      fn(email, password)
-        .then(result => next(null, result))
-        .catch(error => next(error, null));
-    }));
+    passport.use(new LocalStrategy(this.localStrategyConfig,
+      (email, password, next: any) => {
+        fn(email, password)
+          .then(result => next(null, result))
+          .catch(error => next(error, null));
+      }));
   }
 
 
@@ -77,7 +79,7 @@ export default class PassportAuthentication extends BaseAuthentication {
    *
    * @memberOf PassportAuthenticaton
    */
-  authenticate(req, type = 'local') {
+  authenticate(req: any, type = 'local') {
     return new Promise((resolve, reject) => {
       passport.authenticate(type, (error, user) => {
         if (error) return reject(error);
