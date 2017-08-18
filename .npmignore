@@ -1,4 +1,4 @@
-src
+src/
 examples
 tsconfig.json
 package-lock.json
@@ -7,3 +7,7 @@ package-lock.json
 yarn.lock
 yarn-error.log
 .vscode
+tslint.json
+__tests__
+coverage
+.npmignore

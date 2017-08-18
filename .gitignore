@@ -43,5 +43,3 @@ build
 .eslintcache
 .idea
 package-lock.json
-.vscode
-yarn-error.log
