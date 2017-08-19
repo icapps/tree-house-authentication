@@ -1,4 +1,4 @@
-export default class BaseAuthentication {
+export default class TreeAuthentication {
   /**
    * Authenticate the current user
    * @memberOf BaseAuthentication

@@ -9,7 +9,8 @@
     "start": "node ./build/index.js",
     "serve": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts",
     "lint": "tslint 'src/**/*.ts'",
-    "test": "jest --coverage --forceExit",
+    "test": "jest --forceExit",
+    "test:coverage": "jest --coverage --forceExit",
     "test:watch": "jest --watchAll",
     "pretest": "yarn build",
     "prepublish": "yarn build"
