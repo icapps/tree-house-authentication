@@ -1,5 +1,3 @@
-import BaseAuthentication from '../../src/lib/base.authentication';
-
 export const localStrategyConfig = {
   usernameField: 'email',
   passwordField: 'password',
@@ -34,5 +32,3 @@ export function onJwtStrategy(payload) {
     return reject('Local strategy: not authorised');
   });
 }
-
-export class BaseMockAuthentication extends BaseAuthentication {}

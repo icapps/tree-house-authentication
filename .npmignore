@@ -18,7 +18,7 @@ tsconfig.json
 tslint.json
 
 # Testing and coverage
-__tests__
+test
 
 # Coverage directory used by tools like istanbul
 coverage
