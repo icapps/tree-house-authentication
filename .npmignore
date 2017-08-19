@@ -1,13 +1,35 @@
+# Source code and examples
 src/
 examples
-tsconfig.json
-package-lock.json
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Editor
 .editorconfig
-.npmrc
+.vscode
+
+# Typescript
+tsconfig.json
+
+# Linter
+tslint.json
+
+# Testing and coverage
+__tests__
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# NPM
+.npm
+.npmignore
+package-lock.json
+
+# Yarn
+.yarnclean
+.yarnrc
 yarn.lock
 yarn-error.log
-.vscode
-tslint.json
-__tests__
-coverage
-.npmignore

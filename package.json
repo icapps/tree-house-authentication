@@ -2,9 +2,57 @@
   "name": "tree-house-authentication",
   "version": "1.1.0",
   "description": "Tree House Authentication module",
-  "main": "./build/src/index.js",
+  "main": "./build/index.js",
+  "scripts": {
+    "cleanup": "rm -rf ./build/*",
+    "build": "yarn cleanup && tsc",
+    "start": "node ./build/index.js",
+    "serve": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts",
+    "lint": "tslint 'src/**/*.ts'",
+    "test": "jest --coverage --forceExit",
+    "test:watch": "jest --watchAll",
+    "pretest": "yarn build",
+    "prepublish": "yarn build"
+  },
+  "precommit": [
+    "lint"
+  ],
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "jsonwebtoken": "^7.4.3",
+    "passport": "^0.4.0",
+    "passport-jwt": "^3.0.0",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^20.0.2",
+    "@types/node": "^8.0.1",
+    "@types/bcrypt-nodejs": "0.0.30",
+    "@types/jsonwebtoken": "^7.2.3",
+    "@types/passport": "^0.3.3",
+    "@types/passport-jwt": "^2.0.22",
+    "@types/passport-local": "^1.0.30",
+    "chai": "^3.5.0",
+    "chai-things": "^0.2.0",
+    "mocha": "^3.3.0",
+    "nodemon": "^1.11.0",
+    "pre-commit": "^1.2.2",
+    "supertest": "^3.0.0",
+    "ts-jest": "^20.0.10",
+    "ts-node": "^3.0.6",
+    "tslint": "^5.4.3",
+    "tslint-config-airbnb": "^5.2.0",
+    "typescript": "^2.3.4"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "jest": {
-    "notify": true,
+    "notify": false,
+    "coverageReporters": [
+      "json",
+      "html"
+    ],
     "coverageThreshold": {
       "global": {
         "branches": 80,
@@ -23,47 +71,6 @@
       "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
     "testRegex": "/__tests__/.*\\.(ts|tsx|js)$"
-  },
-  "scripts": {
-    "start": "node ./build/index.js",
-    "build": "yarn cleanup && tsc",
-    "cleanup": "rm -rf ./build",
-    "prepublish": "npm run build",
-    "serve": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts",
-    "lint": "tslint 'src/**/*.ts'",
-    "test": "jest --coverage --forceExit"
-  },
-  "precommit": [
-    "lint"
-  ],
-  "dependencies": {
-    "bcrypt-nodejs": "0.0.3",
-    "jsonwebtoken": "^7.4.1",
-    "passport": "^0.3.2",
-    "passport-jwt": "^2.2.1",
-    "passport-local": "^1.0.0",
-    "ts-node": "^3.0.6"
-  },
-  "devDependencies": {
-    "@types/jest": "^20.0.2",
-    "@types/node": "^8.0.1",
-    "chai": "^3.5.0",
-    "chai-things": "^0.2.0",
-    "coveralls": "^2.13.1",
-    "istanbul": "^1.1.0-alpha.1",
-    "jest": "^20.0.4",
-    "mocha": "^3.3.0",
-    "nodemon": "^1.11.0",
-    "pre-commit": "^1.2.2",
-    "supertest": "^3.0.0",
-    "ts-jest": "^20.0.10",
-    "ts-node": "^3.0.6",
-    "tslint": "^5.4.3",
-    "tslint-config-airbnb": "^5.2.0",
-    "typescript": "^2.3.4"
-  },
-  "engines": {
-    "node": ">=4.0.0"
   },
   "author": "Brent Van Geertruy <brentvangeertruy@outlook.com>",
   "license": "MIT",

@@ -4,7 +4,7 @@
     "target": "es6",
     "sourceMap": true,
     "outDir": "./build",
-    "rootDir": "./",
+    "rootDir": "./src",
     "removeComments": true,
 
     "strict": true,
@@ -32,5 +32,10 @@
 
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "**/*.test.ts",
+    "build"
+  ]
 }
