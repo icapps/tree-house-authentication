@@ -49,6 +49,9 @@
   "engines": {
     "node": ">=4.0.0"
   },
+  "directories": {
+    "test": "test"
+  },
   "jest": {
     "notify": false,
     "coverageReporters": [
@@ -74,7 +77,19 @@
     },
     "testRegex": "/test/.*\\.test.(ts|tsx|js)$"
   },
+  "keywords": [
+    "tree House",
+    "treehouse",
+    "authentication",
+    "passport",
+    "passport-local",
+    "passport-jwt"
+  ],
   "author": "Brent Van Geertruy <brentvangeertruy@outlook.com>",
   "license": "MIT",
-  "repository": "git@github.com:knor-el-snor/tree-house-authentication.git"
+  "repository": "git@github.com:knor-el-snor/tree-house-authentication.git",
+  "bugs": {
+    "url": "https://github.com/knor-el-snor/tree-house-authentication/issues"
+  },
+  "homepage": "https://github.com/knor-el-snor/tree-house-authentication#readme"
 }
