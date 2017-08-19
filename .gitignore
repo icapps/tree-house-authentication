@@ -28,6 +28,5 @@ package-lock.json
 
 # Yarn
 .yarnclean
-.yarnrc
 yarn.lock
 yarn-error.log
