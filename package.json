@@ -26,10 +26,10 @@
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
-    "@types/jest": "^20.0.2",
-    "@types/node": "^8.0.1",
     "@types/bcrypt-nodejs": "0.0.30",
+    "@types/jest": "^20.0.2",
     "@types/jsonwebtoken": "^7.2.3",
+    "@types/node": "^8.0.1",
     "@types/passport": "^0.3.3",
     "@types/passport-jwt": "^2.0.22",
     "@types/passport-local": "^1.0.30",
@@ -39,6 +39,7 @@
     "nodemon": "^1.11.0",
     "pre-commit": "^1.2.2",
     "supertest": "^3.0.0",
+    "jest": "^20.0.4",
     "ts-jest": "^20.0.10",
     "ts-node": "^3.0.6",
     "tslint": "^5.4.3",
