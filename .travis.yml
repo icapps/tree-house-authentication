@@ -16,4 +16,4 @@ cache:
     - "node_modules"
 
 script:
-  - yarn run test-ci-partial
+  - yarn run test
