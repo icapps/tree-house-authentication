@@ -1,4 +1,4 @@
-import { CipherUtils } from '../../src';
+import { PassportAuthentication, CipherUtils } from '../../src';
 
 export const localStrategyConfig = {
   usernameField: 'email',
@@ -17,10 +17,9 @@ export const jwtStrategyConfig = {
 export function onLocalStrategy(email, password) {
   return new Promise((resolve, reject) => {
     if (email && (password === 'notSoRandom')) {
-      // Get JWT token from authentication on the main application
-      // TODO: Implement this
-      // const token = main.getAuthentication().getJwtToken({ email, password });
-      return resolve({});
+      // Get JWT token from authentication instance
+      const token = passportAuthentication.getJwtToken({ email, password });
+      return resolve({ token });
     }
     return reject({ error: 'Local strategy: not authorised' });
   });
@@ -34,3 +33,7 @@ export function onJwtStrategy(payload) {
     return reject('Local strategy: not authorised');
   });
 }
+
+// Create new passport authentication
+const passportAuthentication = new PassportAuthentication();
+export { passportAuthentication };

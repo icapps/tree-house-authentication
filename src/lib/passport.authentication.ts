@@ -47,7 +47,7 @@ export default class PassportAuthentication implements TreeAuthentication {
    */
   setJwtStrategy(jwtConfig = DEF_JWT, fn) {
     this.jwtStrategyConfig = Object.assign({}, jwtConfig, {
-      jwtFromRequest: ExtractJwt.fromAuthHeader(),
+      jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('jwt'),
       secretOrKey: jwtConfig.secret,
       authScheme: jwtConfig.authScheme,
       passReqToCallback: false,

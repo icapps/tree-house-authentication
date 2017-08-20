@@ -1,32 +1,27 @@
 import MockExpressRequest from 'mock-express-request';
 import MockExpressResponse from 'mock-express-response';
 
-import { PassportAuthentication } from '../src';
-import { localStrategyConfig, onLocalStrategy } from './lib/passport-authentication.config';
+import { passportAuthentication, localStrategyConfig, onLocalStrategy, jwtStrategyConfig, onJwtStrategy } from './lib/passport-authentication.config';
 
-
+// Correct user credentials
 const userCredentials = {
   email: 'myemail@test.com',
   password: 'notSoRandom',
 };
 
-// TODO: Proper response...
-const loginResponse = {};
-
+// Incorrect user credentials
 const invalidUserCredentials = {
   email: 'myemail@test.com',
   password: 'random',
 };
 
-// Passport authentication instance
-let passportAuthentication = null;
+let jwtToken = null;
 
-describe('Passport Authentication - Local Strategy', () => {
-  it('Set Passport local strategy configuration', () => {
-    passportAuthentication = new PassportAuthentication();
+describe('Passport Authentication', () => {
+  it('Set Passport strategies configuration', () => {
     passportAuthentication.setLocalStrategy(localStrategyConfig, onLocalStrategy);
+    passportAuthentication.setJwtStrategy(jwtStrategyConfig, onJwtStrategy);
   });
-
 
   it('Valid login via Passport local strategy', async() => {
     const req = new MockExpressRequest({ body: userCredentials });
@@ -34,9 +29,11 @@ describe('Passport Authentication - Local Strategy', () => {
 
     // Expect 1 assertion that needs to resolve
     expect.assertions(1);
-    await expect(passportAuthentication.authenticate(req, res, 'local')).resolves.toEqual(loginResponse);
-  });
 
+    // Check if object returned contains a token property
+    jwtToken = await passportAuthentication.authenticate(req, res, 'local');
+    expect(jwtToken).toHaveProperty('token');
+  });
 
   it('Invalid login via Passport local strategy', async() => {
     const req = new MockExpressRequest({ body: invalidUserCredentials });
@@ -46,17 +43,8 @@ describe('Passport Authentication - Local Strategy', () => {
     await expect(passportAuthentication.authenticate(req, res, 'local')).rejects.toEqual({
       error: 'Local strategy: not authorised',
     });
-
-  });
-});
-
-
-describe('Passport Authentication - JWT Strategy', () => {
-  it('Set Passport JWT strategy configuration', () => {
-
   });
 
-  it('Api call via Passport JWT strategy', () => {
-
+  it('Valid authentication via jwt strategy', () => {
   });
 });
