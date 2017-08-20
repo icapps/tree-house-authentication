@@ -1,3 +1,5 @@
+import { CipherUtils } from '../../src';
+
 export const localStrategyConfig = {
   usernameField: 'email',
   passwordField: 'password',
@@ -16,11 +18,11 @@ export function onLocalStrategy(email, password) {
   return new Promise((resolve, reject) => {
     if (email && (password === 'notSoRandom')) {
       // Get JWT token from authentication on the main application
-      // TODO: Implement
+      // TODO: Implement this
       // const token = main.getAuthentication().getJwtToken({ email, password });
-      return resolve({ });
+      return resolve({});
     }
-    return reject('Local strategy: not authorised');
+    return reject({ error: 'Local strategy: not authorised' });
   });
 }
 

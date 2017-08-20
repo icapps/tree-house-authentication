@@ -1,4 +1,5 @@
-import * as passport from 'passport';
+import * as express from 'express';
+import passport from 'passport';
 import { Strategy as LocalStrategy, IStrategyOptions } from 'passport-local';
 import { ExtractJwt, Strategy as JwtStrategy, StrategyOptions } from 'passport-jwt';
 
@@ -6,11 +7,12 @@ import {
   DEFAULT_LOCAL_STRATEGY_CONFIG as DEF_LOCAL,
   DEFAULT_JWT_CONFIG as DEF_JWT,
 } from './passport.config';
-import TreeAuthentication from './base.authentication';
 import { createWebtoken } from './../utils/cipher';
 
+// Interfaces
+import { TreeAuthentication } from './base.authentication';
 
-export default class PassportAuthentication extends TreeAuthentication {
+export default class PassportAuthentication implements TreeAuthentication {
   localStrategyConfig: IStrategyOptions;
   jwtStrategyConfig: StrategyOptions;
 
@@ -20,8 +22,7 @@ export default class PassportAuthentication extends TreeAuthentication {
    * @param {Function} fn
    * @memberOf PassportAuthenticaton
    */
-  setLocalStrategy = (localConfig = DEF_LOCAL, fn: Function) => {
-    // console.log('Set a new strategy', fn);
+  setLocalStrategy = (localConfig = DEF_LOCAL, fn) => {
     this.localStrategyConfig = Object.assign({}, localConfig, {
       passReqToCallback: false,
     });
@@ -74,19 +75,20 @@ export default class PassportAuthentication extends TreeAuthentication {
     throw new Error('JWT Strategy configuration not properly set');
   }
 
+
   /**
    * Authenticate depending on authentication type (local/jwt)
    * @param {Request} req
    * @param {string} [type='local']
    * @returns { Promise }
    */
-  authenticate(req: any, type: string = 'local') {
+  authenticate(req: express.Request, res: express.Response, type: string = 'local') {
     return new Promise((resolve, reject) => {
       passport.authenticate(type, (error, user) => {
         if (error) return reject(error);
-        else if (!user) return reject('User not found');
+        else if (!user) return reject(new Error('User not found'));
         return resolve(user);
-      }).bind(req);
+      })(req, res, () => {}); // Passport needs to be used as express middleware so expects req, res and next
     });
   }
 }

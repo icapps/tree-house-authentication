@@ -1,10 +1,6 @@
-export default class TreeAuthentication {
-  /**
-   * Authenticate the current user
-   * @memberOf BaseAuthentication
-   */
-  // TODO: Overload methods for different implementations...
-  authenticate(request: any, options: any): any {
-    return Promise.resolve({ request, options });
-  }
+import * as express from 'express';
+
+export interface TreeAuthentication {
+  authenticate(request: express.Request, options): Promise < {} > ;
+  authenticate(request: express.Request, res: express.Response, options): Promise < {} > ;
 }

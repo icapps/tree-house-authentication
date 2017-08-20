@@ -1,4 +1,4 @@
-import * as CipherUtils from '../src/utils/cipher';
+import { CipherUtils } from '../src';
 
 const user = {
   password: 'myPassword',

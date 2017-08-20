@@ -6,7 +6,8 @@
   "jsRules": {},
   "rules": {
     "align": [true, "statements", "elements", "members", "parameters"],
-    "import-name": false
+    "import-name": false,
+    "max-line-length": [true, 150]
   },
   "rulesDirectory": []
 }
