@@ -1,15 +1,16 @@
 import { sign as jsonwebtokenSign, Secret, SignOptions } from 'jsonwebtoken';
-import * as bcryptNodejs from 'bcrypt-nodejs';
+import * as bcrypt from 'bcrypt';
 
 
 /**
  * Get a hashed password
  * @param {String} password
- * @return {String}
+ * @return {Promise}
  */
-export function getHashedPassword(password: string): string {
-  return bcryptNodejs.hashSync(password);
+export function getHashedPassword(password: string, saltCount: number):  Promise <string> {
+  return bcrypt.hash(password, saltCount);
 }
+
 
 /**
  * compare user password hash with unhashed password
@@ -17,9 +18,10 @@ export function getHashedPassword(password: string): string {
  * @param {String} hashedPw
  * @returns {Boolean} isPasswordSame
  */
-export function comparePassword(password: string, hashedPw: string): boolean {
-  return bcryptNodejs.compareSync(password, hashedPw);
+export function comparePassword(password: string, hashedPw: string): Promise <boolean> {
+  return bcrypt.compare(password, hashedPw);
 }
+
 
 /**
  * Create a new json webtoken
@@ -28,7 +30,7 @@ export function comparePassword(password: string, hashedPw: string): boolean {
  * @param {SignOptions} jwtSettings
  * @returns {Object}
  */
-export function createWebtoken(user: Object, secretOrKey: Secret, jwtSettings: SignOptions): any {
+export function createWebtoken(user: Object, secretOrKey: Secret, jwtSettings: SignOptions): string {
   return jsonwebtokenSign({ user }, secretOrKey, {
     algorithm: jwtSettings.algorithm,
     expiresIn: `${jwtSettings.expiresIn}s`, // Expires in seconds
