@@ -1,7 +1,8 @@
 import * as express from 'express';
-import passport from 'passport';
 import { Strategy as LocalStrategy, IStrategyOptions } from 'passport-local';
 import { ExtractJwt, Strategy as JwtStrategy, StrategyOptions } from 'passport-jwt';
+
+const passport = require('passport');
 
 import {
   DEFAULT_LOCAL_STRATEGY_CONFIG as DEF_LOCAL,
@@ -34,6 +35,7 @@ export default class PassportAuthentication implements TreeAuthentication {
           .then(result => next(null, result))
           .catch(error => next(error, null));
       });
+
 
     // Use this local strategy
     passport.use(localStrategy);
