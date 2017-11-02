@@ -17,7 +17,7 @@ export default class JwtAuthentication implements TreeAuthentication {
    * @param {any} payload
    * @returns {Object} payload
    */
-  createToken = async(payload) => {
+  createToken = async (payload) => {
     return await createJwt(payload, this.configuration['secretOrKey'], this.configuration);
   }
 
@@ -27,7 +27,7 @@ export default class JwtAuthentication implements TreeAuthentication {
    * @param {String | Buffer} jwtToken
    * @returns {Object} payload
    */
-  authenticate = async(jwtToken) => {
+  authenticate = async (jwtToken) => {
     if (!jwtToken) throw new Error('JWT token not provided.');
     return await verifyJwt(jwtToken, this.configuration['secretOrKey'], this.configuration);
   }

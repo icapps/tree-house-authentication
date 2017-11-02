@@ -1,62 +1,64 @@
 Treehouse Authentication
 =========
 
-Tree-house Authentication module
+Tree-house Authentication module written in TypeScript.
 
 ## Installation
 
   `npm install tree-house-authentication`
+  
+## Base classes
+Following interfaces are available:
 
-##### Passport - configuration
 ```
-const localStrategyConfig = {
-    usernameField: 'email',
-    passwordField: 'password',
+- TreeAuthentication
+	- authenticate: (jwtToken: string | Object) => Promise < {} > ;
+```
+
+## Jwt - configuration
+```
+const configuration = {
+  algorithm: 'HS256',
+  expiresIn: '7d',
+  audience: 'TREEHOUSE-AUTH',
+  issuer: 'treehouse-authentication',
+  secretOrKey: '5kZxE|gZu1ODB183s772)/3:l_#5hU3Gn5O|2ux3&lhN@LQ6g+"i$zqB_C<6',
 };
-
-const jwtStrategyConfig = {
-    secret: '8^dxE|gZu1ODB183s772)/3:l_#fdsfsdf|2ux3&lhN@LQ6g+"i$zq45fsdq1',
-    algorithm: 'HS256',
-    expiresIn: 24 * 60 * 60,
-    issuer: 'treehouse',
-    audience: 'TREEHOUSE',
-    authScheme: 'X-Session-Id',
-};
-
-// Implement own logic for local authorisation - must return a Promise
-function onLocalStrategy(email, password) { 
-     // Own authentication logic...
-     return Promise.resolve(jwtToken);
-}
-
-// Implement own logic for authorisation via JWT - must return a Promise
-function onJwtStrategy(payload) {
-    // Own authentication logic...
-    return Promise.resolve(userData);
-}
 ```
-> The next function expects an error as first parameter and the response as second parameter
+> You can find all possible configuration options at [Github: node-jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)
 
-##### Passport - usage
+## Jwt - usage
 
 ```
-import { PassportAuthentication } from 'tree-house-authentication';
-const passportAuthentication = new PassportAuthentication();
+import { JwtAuthentication } from 'tree-house-authentication';
 
-passportAuthentication.setLocalStrategy(localStrategyConfig, onLocalStrategy);
-passportAuthentication.setJwtStrategy(jwtStrategyConfig, onJwtStrategy);
+// Pass configuration via constructor
+const authenticator = new JwtAuthentication(configuration);
 ```
-> The authenticate() function will always return a Promise.
 
-**Local strategy authentication**
+### authenticator.createToken(payload)
+**Asynchronous**: returns a json webtoken with your payload and previously set configuration.
 
-`passportAuthentication.authenticate('local').then(...)`
+### authenticator.authenticate(jwtToken)
+**Asynchronous**: returns decoded jwt token when the provided token is still valid.
+
+## Extra utilities
+We provide an extra set of utility functions (these are all static functions):
+
+`import { CipherUtils } from 'tree-house-authentication`
+
+### getHashedPassword(password, saltCount)
+**Asynchronous**: returns a hashed password.
 
 
-**JWT Strategy authentication**
+### comparePassword(password, hashedPw)
+**Asynchronous**: Check whether a password is valid compared with a hashed password.
 
-`passportAuthentication.authenticate('jwt').then(...)`
+### decodeJwt(jwtToken)
+**Synchronous**: Return a decoded json webtoken. This does not validate the token.
+
 
 ## Tests
 
-  You can run `npm test` to run all tests 
+  You can run `yarn test` to run all tests
+  You can run `yarn test:coverage` to run all tests wuth coverage report
