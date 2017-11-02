@@ -1,8 +1,8 @@
 import TreeAuthentication from './lib/base.authentication';
-import PassportAuthentication from './lib/passport.authentication';
+import JwtAuthentication from './lib/jwt.authentication';
 import * as CipherUtils from './utils/cipher';
 
 /**
  * Export all exposed variables
  */
-export { TreeAuthentication, PassportAuthentication, CipherUtils };
+export { TreeAuthentication, JwtAuthentication, CipherUtils };

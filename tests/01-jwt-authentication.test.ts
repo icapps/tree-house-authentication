@@ -1,8 +1,6 @@
 import MockExpressRequest from 'mock-express-request';
 import MockExpressResponse from 'mock-express-response';
 
-import { passportAuthentication, localStrategyConfig, onLocalStrategy, jwtStrategyConfig, onJwtStrategy } from './lib/passport-authentication.config';
-
 // Correct user credentials
 const userCredentials = {
   email: 'myemail@test.com',
@@ -17,7 +15,7 @@ const invalidUserCredentials = {
 
 let jwtToken = null;
 
-describe('Passport Authentication', () => {
+/* describe('Jwt Authentication', () => {
   it('Set Passport strategies configuration', () => {
     passportAuthentication.setLocalStrategy(localStrategyConfig, onLocalStrategy);
     passportAuthentication.setJwtStrategy(jwtStrategyConfig, onJwtStrategy);
@@ -48,3 +46,4 @@ describe('Passport Authentication', () => {
   it('Valid authentication via jwt strategy', () => {
   });
 });
+ */
