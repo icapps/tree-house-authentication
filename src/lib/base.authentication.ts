@@ -1,3 +1,3 @@
-export interface TreeAuthentication {
-  authenticate(jwtToken: string | Object): Promise < {} > ;
+export default interface TreeAuthentication {
+  authenticate: (jwtToken: string | Object) => Promise < {} > ;
 }

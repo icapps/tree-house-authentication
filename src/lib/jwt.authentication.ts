@@ -2,12 +2,12 @@ import { DEFAULT_JWT_CONFIG } from '../config/jwt.config';
 import { createJwt, verifyJwt } from '../utils/cipher';
 
 // Interfaces
-import { TreeAuthentication } from './base.authentication';
+import TreeAuthentication from './base.authentication';
 
 export default class JwtAuthentication implements TreeAuthentication {
   configuration: Object;
 
-  constructor(configuration) {
+  constructor(configuration = {}) {
     this.configuration = Object.assign({}, DEFAULT_JWT_CONFIG, configuration);
   }
 
@@ -28,10 +28,7 @@ export default class JwtAuthentication implements TreeAuthentication {
    * @returns {Object} payload
    */
   authenticate = async(jwtToken) => {
-    if (!jwtToken) throw new Error('JWT token not provided or incorrect');
+    if (!jwtToken) throw new Error('JWT token not provided.');
     return await verifyJwt(jwtToken, this.configuration['secretOrKey'], this.configuration);
   }
-
-  // TODO: Implement decode
-
 }
