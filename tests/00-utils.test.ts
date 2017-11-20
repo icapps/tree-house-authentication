@@ -1,4 +1,4 @@
-import { getHashedPassword, comparePassword, createJwt, verifyJwt, decodeJwt } from '../src/utils/cipher';
+import { getHashedPassword, comparePassword, createJwt, verifyJwt, decodeJwt, generateRandomHash } from '../src/utils/cipher';
 
 const user = {
   password: 'myPassword',
@@ -26,6 +26,11 @@ describe('#Utils - cipher', () => {
   test('Should return true when password is valid', async() => {
     const hashedPassword = await getHashedPassword(user.password, 10);
     expect(await comparePassword(user.password, hashedPassword)).toBe(true);
+  });
+
+  test('Should return a random hashed string', async() => {
+    const hashedString = generateRandomHash();
+    expect(hashedString).toHaveLength(64);
   });
 
   test('Should return a valid JWT token', async() => {

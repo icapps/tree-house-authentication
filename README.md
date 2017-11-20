@@ -50,13 +50,14 @@ We provide an extra set of utility functions (these are all static functions):
 ### getHashedPassword(password, saltCount)
 **Asynchronous**: returns a hashed password.
 
-
 ### comparePassword(password, hashedPw)
 **Asynchronous**: Check whether a password is valid compared with a hashed password.
 
 ### decodeJwt(jwtToken)
 **Synchronous**: Return a decoded json webtoken. This does not validate the token.
 
+### generateRandomHash(algorithm (optional), secret (optional))
+**Synchronous**: Return a random hash (can be used for tokens) 
 
 ## Tests
 
