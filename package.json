@@ -4,13 +4,11 @@
   "description": "Tree House Authentication module",
   "main": "./build/index.js",
   "scripts": {
-    "cleanup": "rm -rf ./build/*",
-    "build": "yarn cleanup && tsc",
-    "start": "node ./build/index.js",
-    "serve": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts",
+    "clean": "rm -rf ./build/*",
+    "build": "yarn clean && tsc",
     "lint": "tslint 'src/**/*.ts'",
     "test": "jest --forceExit",
-    "test:coverage": "jest --coverage  --collectCoverageFrom=src/**/*.ts --forceExit",
+    "test:coverage": "jest --coverage --collectCoverageFrom=src/**/*.ts --forceExit",
     "test:watch": "jest --watchAll",
     "pretest": "yarn build",
     "prepublish": "yarn build"
@@ -19,55 +17,27 @@
     "lint"
   ],
   "dependencies": {
-    "bcrypt": "^1.0.3",
-    "jsonwebtoken": "~8.1.0",
-    "lodash": "^4.17.4"
+    "bcrypt": "~1.0.3",
+    "jsonwebtoken": "~8.2.0",
+    "lodash": "~4.17.4"
   },
   "devDependencies": {
     "@types/bcrypt": "^1.0.0",
-    "@types/jest": "^21.1.5",
-    "@types/jsonwebtoken": "^7.2.3",
-    "@types/node": "^8.0.47",
-    "jest": "^21.2.1",
-    "nodemon": "^1.12.1",
+    "@types/jest": "~22.2.0",
+    "@types/jsonwebtoken": "^7.2.5",
+    "jest": "^22.4.2",
     "pre-commit": "^1.2.2",
     "supertest": "^3.0.0",
-    "ts-jest": "^21.1.4",
-    "ts-node": "^3.0.6",
-    "tslint": "^5.8.0",
-    "tslint-config-airbnb": "^5.3.0",
-    "typescript": "^2.6.0"
+    "ts-jest": "~22.4.1",
+    "tslint": "^5.9.1",
+    "tslint-config-airbnb": "^5.7.0",
+    "typescript": "^2.7.2"
   },
   "engines": {
     "node": ">=4.0.0"
   },
   "directories": {
     "test": "test"
-  },
-  "jest": {
-    "notify": false,
-    "coverageReporters": [
-      "json",
-      "html"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 80,
-        "functions": 80,
-        "lines": 80,
-        "statements": 80
-      }
-    },
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "json"
-    ],
-    "transform": {
-      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "testRegex": "/test/.*\\.test.(ts|tsx|js)$"
   },
   "keywords": [
     "tree House",
@@ -79,9 +49,9 @@
   ],
   "author": "Brent Van Geertruy <brentvangeertruy@outlook.com>",
   "license": "MIT",
-  "repository": "git@github.com:knor-el-snor/tree-house-authentication.git",
+  "repository": "git@github.com:icapps/tree-house-authentication.git",
   "bugs": {
-    "url": "https://github.com/knor-el-snor/tree-house-authentication/issues"
+    "url": "https://github.com/icapps/tree-house-authentication/issues"
   },
-  "homepage": "https://github.com/knor-el-snor/tree-house-authentication#readme"
+  "homepage": "https://github.com/icapps/tree-house-authentication#readme"
 }

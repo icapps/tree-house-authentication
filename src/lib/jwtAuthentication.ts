@@ -1,37 +1,6 @@
-import * as crypto from 'crypto';
-import * as bcrypt from 'bcrypt';
-import { sign as jwtSign, verify as jwtVerify, decode as jwtDecode, Secret, SignOptions } from 'jsonwebtoken';
 import { omit } from 'lodash';
-/**
- * Get a hashed password
- * @param {String} password
- * @return {Promise}
- */
-export function getHashedPassword(password: string, saltCount: number): Promise < string > {
-  return bcrypt.hash(password, saltCount);
-}
-
-
-/**
- * Generate a random hashed string
- * @param {String} algorithm
- * @param {String} secret
- * @returns {String} hash
- */
-export function generateRandomHash(algorithm = 'sha256', secret = Math.random().toString(36).slice(-8)) {
-  return crypto.createHmac(algorithm, secret).digest('hex');
-}
-
-
-/**
- * compare user password hash with unhashed password
- * @param {String} password
- * @param {String} hashedPw
- * @returns {Boolean} isPasswordSame
- */
-export function comparePassword(password: string, hashedPw: string): Promise < boolean > {
-  return bcrypt.compare(password, hashedPw);
-}
+import { sign as jwtSign, verify as jwtVerify, decode as jwtDecode, Secret, SignOptions } from 'jsonwebtoken';
+import { DEFAULT_JWT_CONFIG } from '../config/jwtConfig';
 
 
 /**
@@ -41,7 +10,7 @@ export function comparePassword(password: string, hashedPw: string): Promise < b
  * @param {SignOptions} jwtSettings
  * @returns {Promise} jwtToken
  */
-export function createJwt(payload: Object, secretOrKey: Secret, jwtSettings: SignOptions): Promise < {} > {
+export function createJwt(payload: Object, secretOrKey: Secret, jwtSettings: SignOptions = DEFAULT_JWT_CONFIG): Promise<{}> {
   return new Promise((resolve, reject) => {
     // Make sure we remove secretOrKey from the config we pass to jsonwebtoken
     return jwtSign(payload, secretOrKey, omit(jwtSettings, ['secretOrKey']), (error, jwtToken) => {
@@ -58,7 +27,7 @@ export function createJwt(payload: Object, secretOrKey: Secret, jwtSettings: Sig
  * @param {String} secretOrKey
  * @returns {Promise} decoded JWT token
  */
-export function verifyJwt(token: string, secretOrKey: string | Buffer, jwtSettings: SignOptions): Promise < {} > {
+export function verifyJwt(token: string, secretOrKey: string | Buffer, jwtSettings: SignOptions = DEFAULT_JWT_CONFIG): Promise<{}> {
   return new Promise((resolve, reject) => {
     // Make sure we remove secretOrKey from the config we pass to jsonwebtoken
     jwtVerify(token, secretOrKey, omit(jwtSettings, ['secretOrKey']), (error, decoded) => {
@@ -66,6 +35,17 @@ export function verifyJwt(token: string, secretOrKey: string | Buffer, jwtSettin
       resolve(decoded);
     });
   });
+}
+
+
+/**
+ * Authenticate whether the provided JWT token is valid
+ * @param {String | Buffer} jwtToken
+ * @returns {Object} payload
+ */
+export function authenticateJwt(token: string, jwtSettings: SignOptions = DEFAULT_JWT_CONFIG) {
+  if (token === '') throw new Error('JWT token not provided.');
+  return verifyJwt(token, jwtSettings['secretOrKey'], jwtSettings);
 }
 
 
