@@ -24,7 +24,7 @@ yarn add tree-house-authentication
 
 ## Configuration
 ```
-const configuration = {
+const jwtSettings = {
   algorithm: 'HS256',
   expiresIn: '7d',
   audience: 'TREEHOUSE-AUTH',
@@ -35,11 +35,8 @@ const configuration = {
 > You can find all possible configuration options at [Github: node-jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)
 
 ## JWT
-### createJwt(payload, secretOrKey, jwtSettings)
-Returns a json webtoken with the provided payload and previously set configuration. (**Asynchronous**)
-
-### verifyJwt(token, secretOrKey, jwtSettings)
-Verify whether the provided jwt token is valid and return decoded information. (**Asynchronous** )
+### createJwt(payload, jwtSettings)
+Returns a json webtoken with the provided payload and configuration. (**Asynchronous**)
 
 ### authenticateJwt(token, jwtSettings)
 Returns decoded jwt token when the provided token is still valid. (**Asynchronous**)
