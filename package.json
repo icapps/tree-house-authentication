@@ -1,6 +1,6 @@
 {
   "name": "tree-house-authentication",
-  "version": "1.2.2",
+  "version": "2.0.0",
   "description": "Tree House Authentication module",
   "main": "./build/index.js",
   "scripts": {
@@ -18,8 +18,7 @@
   ],
   "dependencies": {
     "bcrypt": "~1.0.3",
-    "jsonwebtoken": "~8.2.0",
-    "lodash": "~4.17.4"
+    "jsonwebtoken": "~8.2.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^1.0.0",
