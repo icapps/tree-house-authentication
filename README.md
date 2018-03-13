@@ -1,5 +1,4 @@
 # Tree-house Authentication
-=========
 
 Authentication module written in TypeScript providing authentication utilities and JWT methods.
 
