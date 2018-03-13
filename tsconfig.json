@@ -2,36 +2,27 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es6",
-    "sourceMap": true,
+    "sourceMap": false,
     "outDir": "./build",
     "rootDir": "./src",
-    "removeComments": true,
-
-    "strict": true,
-    "strictNullChecks": false,
-    "noImplicitThis": false,
-    "alwaysStrict": true,
-
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": false,
 
     "moduleResolution": "node",
     "baseUrl": "./",
-    "paths": {},
-    "rootDirs": [],
     "typeRoots": ["node_modules/@types"],
     "declaration": true,
-    "allowSyntheticDefaultImports": true,
 
-    "sourceRoot": "./src",
-    "mapRoot": "./build",
-    "inlineSources": true,
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": false,
+    "removeComments": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
 
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "paths": {
+      "*": [
+        "node_modules/*",
+        "types/*"
+      ]
+    }
   },
   "exclude": [
     "node_modules",
