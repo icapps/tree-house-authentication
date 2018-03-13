@@ -5,15 +5,11 @@ import { DEFAULT_JWT_CONFIG } from '../config/jwtConfig';
 
 /**
  * Create a new json webtoken
- * @param {Object} user
- * @param {String} secretOrKey
- * @param {SignOptions} jwtSettings
- * @returns {Promise} jwtToken
  */
 export function createJwt(payload: Object, secretOrKey: Secret, jwtSettings: SignOptions = DEFAULT_JWT_CONFIG): Promise<{}> {
   return new Promise((resolve, reject) => {
     // Make sure we remove secretOrKey from the config we pass to jsonwebtoken
-    return jwtSign(payload, secretOrKey, omit(jwtSettings, ['secretOrKey']), (error, jwtToken) => {
+    jwtSign(payload, secretOrKey, omit(jwtSettings, ['secretOrKey']), (error, jwtToken) => {
       if (error) reject(`Something went wrong trying to create a json webtoken. Actual error: ${error}`);
       resolve(jwtToken);
     });
@@ -22,16 +18,13 @@ export function createJwt(payload: Object, secretOrKey: Secret, jwtSettings: Sig
 
 
 /**
- * Verify whether the provided jwt token is valid and return decoded
- * @param {String} token
- * @param {String} secretOrKey
- * @returns {Promise} decoded JWT token
+ * Verify whether the provided jwt token is valid and return decoded information
  */
 export function verifyJwt(token: string, secretOrKey: string | Buffer, jwtSettings: SignOptions = DEFAULT_JWT_CONFIG): Promise<{}> {
   return new Promise((resolve, reject) => {
     // Make sure we remove secretOrKey from the config we pass to jsonwebtoken
     jwtVerify(token, secretOrKey, omit(jwtSettings, ['secretOrKey']), (error, decoded) => {
-      if (error) reject(`Something went wrong trying to create a json webtoken. Actual error: ${error}`);
+      if (error) reject(`Something went wrong trying to verify the json webtoken. Actual error: ${error}`);
       resolve(decoded);
     });
   });
@@ -40,10 +33,8 @@ export function verifyJwt(token: string, secretOrKey: string | Buffer, jwtSettin
 
 /**
  * Authenticate whether the provided JWT token is valid
- * @param {String | Buffer} jwtToken
- * @returns {Object} payload
  */
-export function authenticateJwt(token: string, jwtSettings: SignOptions = DEFAULT_JWT_CONFIG) {
+export function authenticateJwt(token: string, jwtSettings: SignOptions = DEFAULT_JWT_CONFIG): Promise<{}> {
   if (token === '') throw new Error('JWT token not provided.');
   return verifyJwt(token, jwtSettings['secretOrKey'], jwtSettings);
 }
@@ -51,9 +42,7 @@ export function authenticateJwt(token: string, jwtSettings: SignOptions = DEFAUL
 
 /**
  * Decode a json webtoken without validation
- * @param token
- * @returns {Object} payload
  */
-export function decodeJwt(token: string): Object {
+export function decodeJwt(token: string): null | object | string {
   return jwtDecode(token);
 }

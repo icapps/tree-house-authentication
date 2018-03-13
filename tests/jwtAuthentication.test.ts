@@ -1,3 +1,4 @@
+import * as jsonwebtoken from 'jsonwebtoken';
 import { DEFAULT_JWT_CONFIG } from '../src/config/jwtConfig';
 import { createJwt, verifyJwt, decodeJwt, authenticateJwt } from '../src/lib/jwtAuthentication';
 
@@ -29,13 +30,23 @@ describe('#Jwt authentication', () => {
     token = await createJwt(user, validJwtConfiguration.secretOrKey, validJwtConfiguration);
   });
 
-  it('Should return a valid JWT token', async () => {
+  it('Should create a valid JWT token', async () => {
     const jwtToken = await createJwt(user, validJwtConfiguration.secretOrKey, validJwtConfiguration);
     expect(typeof jwtToken).toBe('string');
   });
 
+  it('Should create a valid JWT token with default configuration', async () => {
+    const jwtToken = await createJwt(user, validJwtConfiguration.secretOrKey);
+    expect(typeof jwtToken).toBe('string');
+  });
+
   it('Should throw an error when trying to create an invalid JWT token', async () => {
-    await expect(() => createJwt(user, validJwtConfiguration.secretOrKey, invalidJwtConfiguration)).rejects;
+    expect.assertions(1);
+    try {
+      await createJwt(user, validJwtConfiguration.secretOrKey, invalidJwtConfiguration);
+    } catch (e) {
+      expect(e).toEqual('Something went wrong trying to create a json webtoken. Actual error: Error: "myInvalidKey" is not allowed in "options"');
+    }
   });
 
   it('Should verify a valid JWT token', async () => {
@@ -45,6 +56,24 @@ describe('#Jwt authentication', () => {
     expect(payload).toHaveProperty('exp');
     expect(payload).toHaveProperty('aud');
     expect(payload).toHaveProperty('iss');
+  });
+
+  it('Should verify a valid JWT token with default configuration', async () => {
+    const payload = await verifyJwt(token, validJwtConfiguration.secretOrKey);
+    expect(payload).not.toBeNull;
+    expect(payload).toHaveProperty('iat');
+    expect(payload).toHaveProperty('exp');
+    expect(payload).toHaveProperty('aud');
+    expect(payload).toHaveProperty('iss');
+  });
+
+  it('Should throw an error when trying to verify an invalid JWT token', async () => {
+    expect.assertions(1);
+    try {
+      await verifyJwt('invalidToken', validJwtConfiguration.secretOrKey);
+    } catch (e) {
+      expect(e).toEqual('Something went wrong trying to verify the json webtoken. Actual error: JsonWebTokenError: jwt malformed');
+    }
   });
 
   it('Should throw an error when trying to validate an invalid JWT token', async () => {
@@ -60,7 +89,7 @@ describe('#Jwt authentication', () => {
     expect(payload).toHaveProperty('iss');
   });
 
-  it('Should verify a valid JWT token', async () => {
+  it('Should authenticate a valid JWT token', async () => {
     const payload = await authenticateJwt(token, validJwtConfiguration);
     expect(payload).not.toBeNull;
     expect(payload).toHaveProperty('iat');
@@ -69,8 +98,23 @@ describe('#Jwt authentication', () => {
     expect(payload).toHaveProperty('iss');
   });
 
+  it('Should authenticate a valid JWT token with default configuration', async () => {
+    const payload = await authenticateJwt(token);
+    expect(payload).not.toBeNull;
+    expect(payload).toHaveProperty('iat');
+    expect(payload).toHaveProperty('exp');
+    expect(payload).toHaveProperty('aud');
+    expect(payload).toHaveProperty('iss');
+  });
+
+
   it('Should throw an error when trying to validate with an empty JWT token', async () => {
-    await expect(() => authenticateJwt('', validJwtConfiguration)).rejects;
+    expect.assertions(1);
+    try {
+      await authenticateJwt('', validJwtConfiguration);
+    } catch (e) {
+      expect(e).toEqual(new Error('JWT token not provided.'));
+    }
   });
 
   it('Should throw an error when trying to validate an invalid JWT token', async () => {

@@ -5,15 +5,7 @@ Tree-house Authentication module written in TypeScript.
 
 ## Installation
 
-  `npm install tree-house-authentication`
-  
-## Base classes
-Following interfaces are available:
-
-```
-- TreeAuthentication
-	- authenticate: (jwtToken: string | Object) => Promise < {} > ;
-```
+  `npm install tree-house-authentication` or `yarn add tree-house-authentication`
 
 ## Jwt - configuration
 ```
