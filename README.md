@@ -1,13 +1,28 @@
-Treehouse Authentication
+# Tree-house Authentication
 =========
 
-Tree-house Authentication module written in TypeScript.
+Authentication module written in TypeScript providing authentication utilities and JWT methods.
 
 ## Installation
 
-  `npm install tree-house-authentication` or `yarn add tree-house-authentication`
+Install via npm
 
-## Jwt - configuration
+```
+npm install tree-house-authentication
+```
+
+or via yarn
+
+```
+yarn add tree-house-authentication
+```
+
+## Usage
+
+- `const authenticator = require('tree-house-authentication')`
+- `import * as authenticator from 'tree-house-authentication'`
+
+## Configuration
 ```
 const configuration = {
   algorithm: 'HS256',
@@ -19,39 +34,38 @@ const configuration = {
 ```
 > You can find all possible configuration options at [Github: node-jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)
 
-## Jwt - usage
+## JWT
+### createJwt(payload, secretOrKey, jwtSettings)
+Returns a json webtoken with the provided payload and previously set configuration. (**Asynchronous**)
 
-```
-import { JwtAuthentication } from 'tree-house-authentication';
+### verifyJwt(token, secretOrKey, jwtSettings)
+Verify whether the provided jwt token is valid and return decoded information. (**Asynchronous** )
 
-// Pass configuration via constructor
-const authenticator = new JwtAuthentication(configuration);
-```
+### authenticateJwt(token, jwtSettings)
+Returns decoded jwt token when the provided token is still valid. (**Asynchronous**)
 
-### authenticator.createToken(payload)
-**Asynchronous**: returns a json webtoken with your payload and previously set configuration.
+### decodeJwt(token)
+Return a decoded json webtoken. This does not validate the token. (**Synchronous**)
 
-### authenticator.authenticate(jwtToken)
-**Asynchronous**: returns decoded jwt token when the provided token is still valid.
-
-## Extra utilities
-We provide an extra set of utility functions (these are all static functions):
-
-`import { CipherUtils } from 'tree-house-authentication`
+## Utilities
+### generateRandomHash(algorithm (optional), secret (optional))
+Return a random hash (can be used for tokens) (**Synchronous**)
 
 ### getHashedPassword(password, saltCount)
-**Asynchronous**: returns a hashed password.
+Returns a hashed password. (**Asynchronous**)
 
 ### comparePassword(password, hashedPw)
-**Asynchronous**: Check whether a password is valid compared with a hashed password.
-
-### decodeJwt(jwtToken)
-**Synchronous**: Return a decoded json webtoken. This does not validate the token.
-
-### generateRandomHash(algorithm (optional), secret (optional))
-**Synchronous**: Return a random hash (can be used for tokens) 
+Check whether a password is valid compared with a hashed password. (**Asynchronous**)
 
 ## Tests
 
   You can run `yarn test` to run all tests
-  You can run `yarn test:coverage` to run all tests wuth coverage report
+  You can run `yarn test:coverage` to run all tests with coverage report
+  
+## Authors
+
+See the list of [contributors](https://github.com/icapps/tree-house-authentication/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
