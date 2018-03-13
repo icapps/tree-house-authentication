@@ -38,14 +38,14 @@ const jwtSettings = {
 Returns a json webtoken with the provided payload and configuration. (**Asynchronous**)
 
 ### authenticateJwt(token, jwtSettings)
-Returns decoded jwt token when the provided token is still valid. (**Asynchronous**)
+Returns a decoded jwt token when the provided token is still valid. (**Asynchronous**)
 
 ### decodeJwt(token)
-Return a decoded json webtoken. This does not validate the token. (**Synchronous**)
+Returns a decoded json webtoken. This does not validate the token. (**Synchronous**)
 
 ## Utilities
 ### generateRandomHash(algorithm (optional), secret (optional))
-Return a random hash (can be used for tokens) (**Synchronous**)
+Returns a random hash (can be used for tokens) (**Synchronous**)
 
 ### getHashedPassword(password, saltCount)
 Returns a hashed password. (**Asynchronous**)
