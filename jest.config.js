@@ -17,14 +17,12 @@ module.exports = {
     "json"
   ],
   transform: {
-    "^.+\\.(ts|tsx)$": "<rootDir>/preprocessor.js"
+    "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
   },
   testRegex: "/tests/.*\\.(ts|tsx|js)$",
-  mapCoverage: true,
   coveragePathIgnorePatterns: [
     '/node_modules/',
     'src/index.ts',
     'src/config',
-    'src/lib/base.*'
   ],
 };
