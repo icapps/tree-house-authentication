@@ -1,4 +1,3 @@
-import { omit } from 'lodash';
 import { sign as jwtSign, verify as jwtVerify, decode as jwtDecode, Secret, SignOptions } from 'jsonwebtoken';
 import { DEFAULT_JWT_CONFIG } from '../config/jwtConfig';
 
@@ -7,7 +6,8 @@ import { DEFAULT_JWT_CONFIG } from '../config/jwtConfig';
  * Create a JWT token
  */
 export function createJwt(payload: Object, options: CustomSignOptions = DEFAULT_JWT_CONFIG) {
-  return signJwt(payload, options['secretOrKey'], omit(options, ['secretOrKey']));
+  const { secretOrKey, ...otherOptions } = options;
+  return signJwt(payload, secretOrKey, otherOptions);
 }
 
 
@@ -16,7 +16,8 @@ export function createJwt(payload: Object, options: CustomSignOptions = DEFAULT_
  */
 export function authenticateJwt(token: string, options: CustomSignOptions = DEFAULT_JWT_CONFIG): Promise<{}> {
   if (token === '') throw new Error('JWT token is empty.');
-  return verifyJwt(token, options['secretOrKey'], omit(options, ['secretOrKey']));
+  const { secretOrKey, ...otherOptions } = options;
+  return verifyJwt(token, secretOrKey, otherOptions);
 }
 
 

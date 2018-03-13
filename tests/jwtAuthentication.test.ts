@@ -97,5 +97,4 @@ describe('#Jwt authentication', () => {
     expect(payload).toHaveProperty('aud');
     expect(payload).toHaveProperty('iss');
   });
-
 });
