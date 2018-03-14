@@ -1,2 +1,2 @@
-export * from './lib/jwtAuthentication';
+export * from './lib/jwt-authentication';
 export * from './lib/cipher';

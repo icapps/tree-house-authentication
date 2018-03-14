@@ -1,5 +1,5 @@
 import { sign as jwtSign, verify as jwtVerify, decode as jwtDecode, Secret, SignOptions } from 'jsonwebtoken';
-import { DEFAULT_JWT_CONFIG } from '../config/jwtConfig';
+import { DEFAULT_JWT_CONFIG } from '../config/jwt.config';
 
 
 /**
