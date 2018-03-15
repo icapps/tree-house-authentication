@@ -35,6 +35,16 @@
   "engines": {
     "node": ">=4.0.0"
   },
+  "contributors": [
+    {
+      "name": "Willem Horsten",
+      "email": "willem.horsten@icapps.com"
+    },
+    {
+      "name": "Brent Van Geertruy",
+      "email": "brent.vangeertruy@icapps.com"
+    }
+  ],
   "directories": {
     "test": "test"
   },
@@ -46,7 +56,6 @@
     "passport-local",
     "passport-jwt"
   ],
-  "author": "Brent Van Geertruy <brentvangeertruy@outlook.com>",
   "license": "MIT",
   "repository": "git@github.com:icapps/tree-house-authentication.git",
   "bugs": {
