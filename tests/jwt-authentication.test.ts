@@ -1,6 +1,6 @@
 import * as jsonwebtoken from 'jsonwebtoken';
 import { DEFAULT_JWT_CONFIG } from '../src/config/jwt.config';
-import { createJwt, authenticateJwt, decodeJwt } from '../src/lib/jwt-authentication';
+import { createJwt, authenticateJwt, decodeJwt } from '../src';
 
 const validJwtConfiguration = {
   algorithm: 'HS256',

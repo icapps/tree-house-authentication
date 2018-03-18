@@ -1,4 +1,4 @@
-import { getHashedPassword, comparePassword, generateRandomHash } from '../src/lib/cipher';
+import { getHashedPassword, comparePassword, generateRandomHash } from '../src';
 
 const user = {
   password: 'myPassword',
