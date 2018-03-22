@@ -58,7 +58,7 @@
     "passport-local",
     "passport-jwt"
   ],
-  "license": "MIT",
+  "license": "ISC",
   "repository": "git@github.com:icapps/tree-house-authentication.git",
   "bugs": {
     "url": "https://github.com/icapps/tree-house-authentication/issues"
