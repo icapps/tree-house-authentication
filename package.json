@@ -12,13 +12,14 @@
     "test:coverage": "jest --coverage --collectCoverageFrom=src/**/*.ts --forceExit",
     "test:watch": "jest --watchAll",
     "pretest": "yarn build",
-    "prepublish": "yarn build"
+    "prepublish": "yarn build",
+    "release": "node_modules/np/cli.js --no-cleanup"
   },
   "precommit": [
     "lint"
   ],
   "dependencies": {
-    "bcrypt": "~1.0.3",
+    "bcrypt": "~2.0.0",
     "jsonwebtoken": "~8.2.0"
   },
   "devDependencies": {
@@ -27,6 +28,7 @@
     "@types/jsonwebtoken": "^7.2.5",
     "coveralls": "^3.0.0",
     "jest": "^22.4.2",
+    "np": "^2.20.1",
     "pre-commit": "^1.2.2",
     "supertest": "^3.0.0",
     "ts-jest": "~22.4.1",
@@ -37,16 +39,6 @@
   "engines": {
     "node": ">=4.0.0"
   },
-  "contributors": [
-    {
-      "name": "Willem Horsten",
-      "email": "willem.horsten@icapps.com"
-    },
-    {
-      "name": "Brent Van Geertruy",
-      "email": "brent.vangeertruy@icapps.com"
-    }
-  ],
   "directories": {
     "test": "test"
   },
