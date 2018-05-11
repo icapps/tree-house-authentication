@@ -10,6 +10,7 @@ npm-debug.log*
 # Editor
 .editorconfig
 .vscode
+.TODO
 
 # Typescript
 tsconfig.json
