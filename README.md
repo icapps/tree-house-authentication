@@ -75,8 +75,8 @@ Check whether a password is valid compared with a hashed password. (**Asynchrono
 
 ## Tests
 
-  You can run `yarn test` to run all tests
-  You can run `yarn test:coverage` to run all tests with coverage report
+  You can run `npm run test` to run all tests
+  You can run `npm run test:coverage` to run all tests with coverage report
 
 ## Authors
 

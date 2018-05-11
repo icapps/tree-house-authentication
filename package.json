@@ -6,13 +6,13 @@
   "types": "build/index.d.ts",
   "scripts": {
     "clean": "rm -rf ./build/*",
-    "build": "yarn clean && tsc",
+    "build": "npm run clean && tsc",
     "lint": "tslint 'src/**/*.ts'",
     "test": "jest --forceExit",
     "test:coverage": "jest --coverage --collectCoverageFrom=src/**/*.ts --forceExit",
     "test:watch": "jest --watchAll",
-    "pretest": "yarn build",
-    "prepublish": "yarn build",
+    "pretest": "npm run build",
+    "prepublish": "npm run build",
     "release": "node_modules/np/cli.js --no-cleanup"
   },
   "precommit": [
