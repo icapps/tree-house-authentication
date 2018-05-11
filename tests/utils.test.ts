@@ -5,9 +5,9 @@ const user = {
 };
 
 describe('#Utils - cipher', () => {
-  it('Should return true when password is valid', async () => {
-    const hashedPassword = await getHashedPassword(user.password, 10);
-    expect(await comparePassword(user.password, hashedPassword)).toBe(true);
+  it('Should return true when password is valid', () => {
+    const hashedPassword = getHashedPassword(user.password, 10);
+    expect(comparePassword(user.password, hashedPassword)).toBe(true);
   });
 
   it('Should return a random hashed string', async () => {

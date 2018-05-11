@@ -1,4 +1,4 @@
-# Tree-house Authentication
+# Treehouse authentication
 
 Authentication module written in TypeScript providing authentication utilities and JWT methods.
 
@@ -59,6 +59,24 @@ Returns a decoded jwt token when the provided token is still valid. (**Asynchron
 
 Returns a decoded json webtoken. This does not validate the token. (**Synchronous**)
 
+## Sessions
+
+### getSession(options)
+
+Returns an express middleware function to use on session based routes using the `express-session` module. (**Synchronous**)
+
+```javascript
+const app = express();
+
+const session = getSession({
+  secret: 'mySuperSecretSecret'
+});
+
+app.use(session);
+```
+
+- [All available express-session options](https://github.com/expressjs/session)
+
 ## Utilities
 
 ### generateRandomHash(algorithm (optional), secret (optional))
@@ -67,11 +85,11 @@ Returns a random hash (can be used for tokens) (**Synchronous**)
 
 ### getHashedPassword(password, saltCount)
 
-Returns a hashed password. (**Asynchronous**)
+Returns a hashed password. (**Synchronous**)
 
 ### comparePassword(password, hashedPw)
 
-Check whether a password is valid compared with a hashed password. (**Asynchronous**)
+Check whether a password is valid compared with a hashed password. (**Synchronous**)
 
 ## Tests
 
