@@ -1,7 +1,6 @@
 import { sign as jwtSign, verify as jwtVerify, decode as jwtDecode, Secret, SignOptions } from 'jsonwebtoken';
 import { DEFAULT_JWT_CONFIG } from '../config/jwt.config';
 
-
 /**
  * Create a JWT token
  */
@@ -9,7 +8,6 @@ export function createJwt(payload: Object, options: CustomSignOptions = DEFAULT_
   const { secretOrKey, ...otherOptions } = options;
   return signJwt(payload, secretOrKey, otherOptions);
 }
-
 
 /**
  * Authenticate whether the provided JWT token is valid
@@ -20,14 +18,12 @@ export function authenticateJwt(token: string, options: CustomSignOptions = DEFA
   return verifyJwt(token, secretOrKey, otherOptions);
 }
 
-
 /**
  * Decode a json webtoken without validation
  */
 export function decodeJwt(token: string): null | object | string {
   return jwtDecode(token);
 }
-
 
 /**
  * Sign a new json webtoken
@@ -41,7 +37,6 @@ function signJwt(payload: Object, secretOrKey: Secret, jwtSettings: SignOptions)
   });
 }
 
-
 /**
  * Verify whether the provided jwt token is valid and return decoded information
  */
@@ -53,7 +48,6 @@ function verifyJwt(token: string, secretOrKey: string | Buffer, jwtSettings: Sig
     });
   });
 }
-
 
 // Interfaces
 export interface CustomSignOptions extends SignOptions {
