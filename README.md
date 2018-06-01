@@ -77,6 +77,38 @@ app.use(session);
 
 - [All available express-session options](https://github.com/expressjs/session)
 
+## Two-factor authentication
+
+Two-factor authentication functions using the `speakeasy` module.
+
+### generate2FAKey(options)
+
+Returns two-factor authentication key with base32 and otp-authentication url needed for QR code generation
+
+```javascript
+const { otpauth_url, base32, ... } = generate2FAKey();
+```
+
+- [All available speakeasy options](https://github.com/speakeasyjs/speakeasy)
+
+### generateQrCode(options)
+
+Returns QR code image data, user secret, and url (if you wish to have a custom qr code implementation)
+
+```javascript
+const { imageData, secret, url } = generateQrCode(options);
+```
+
+- [All available speakeasy options](https://github.com/speakeasyjs/speakeasy)
+
+### verifyToken(secret, token)
+
+Verify whether a token is valid depending on a provided user secret (returns true/false)
+
+```javascript
+const isValidCode = verifyToken('userSecret', 021214);
+```
+
 ## Utilities
 
 ### generateRandomHash(algorithm (optional), secret (optional))

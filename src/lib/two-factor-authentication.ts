@@ -4,19 +4,19 @@ import * as qrcode from 'qrcode';
 /**
  * Return a two factor secret
  */
-export function generate2FASecret(options?: speakeasy.GenerateSecretOptions): speakeasy.Key {
+export function generate2FAKey(options?: speakeasy.GenerateSecretOptions): speakeasy.Key {
   return speakeasy.generateSecret(options);
 }
 
 /**
  * Return a QR code string and user secret
  */
-export function generateQrCode(options?: speakeasy.GenerateSecretOptions): Promise<{ secret: string, imageData: string, url: string }> {
+export function generateQrCode(options?: speakeasy.GenerateSecretOptions): Promise<QrCodeResponse> {
   return new Promise((resolve, reject) => {
-    const secret = generate2FASecret(options);
-    qrcode.toDataURL(secret.otpauth_url, (error, imageData) => {
+    const key = generate2FAKey(options);
+    qrcode.toDataURL(key.otpauth_url, (error, imageData) => {
       if (error) return reject(error);
-      return resolve({ imageData, secret: secret.base32, url: secret.otpauth_url });
+      return resolve({ imageData, secret: key.base32, url: key.otpauth_url });
     });
   });
 }
@@ -26,4 +26,11 @@ export function generateQrCode(options?: speakeasy.GenerateSecretOptions): Promi
  */
 export function verifyToken(secret: string, token: string): boolean {
   return speakeasy.totp.verify({ secret, token, encoding: 'base32' });
+}
+
+// Interfaces
+export interface QrCodeResponse {
+  secret: string;
+  imageData: string;
+  url: string;
 }
