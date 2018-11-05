@@ -117,11 +117,11 @@ Returns a random hash (can be used for tokens) (**Synchronous**)
 
 ### getHashedPassword(password, saltCount)
 
-Returns a hashed password. (**Synchronous**)
+Returns a hashed password. (**Asynchronous**)
 
 ### comparePassword(password, hashedPw)
 
-Check whether a password is valid compared with a hashed password. (**Synchronous**)
+Check whether a password is valid compared with a hashed password. (**Asynchronous**)
 
 ## Tests
 

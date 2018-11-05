@@ -4,7 +4,7 @@ import * as qrcode from 'qrcode';
 /**
  * Return a two factor secret
  */
-export function generate2FAKey(options?: speakeasy.GenerateSecretOptions): speakeasy.Key {
+export function generate2FAKey(options?: speakeasy.GenerateSecretOptions): speakeasy.GeneratedSecret {
   return speakeasy.generateSecret(options);
 }
 

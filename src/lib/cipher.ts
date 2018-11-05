@@ -1,26 +1,11 @@
 import * as crypto from 'crypto';
+import * as bcrypt from 'bcrypt';
 
 /**
- * generates random string of characters i.e salt
+ * Get a hashed password using bcrypt
  */
-function generateRandomString(length: number): string {
-  return crypto.randomBytes(Math.ceil(length / 2)).toString('hex').slice(0, length);
-}
-
-/**
- * Hash password with sha512
- */
-function sha512(password: string, salt: string): string {
-  return crypto.pbkdf2Sync(password, salt, 2048, 32, 'sha512').toString('hex');
-}
-
-/**
- * Get a hashed password
- */
-export function getHashedPassword(password: string, saltCount: number): string {
-  const salt = generateRandomString(saltCount);
-  const hash = sha512(password, salt);
-  return [salt, hash].join('$');
+export function getHashedPassword(password: string, saltCount: number): Promise<string> {
+  return bcrypt.hash(password, saltCount);
 }
 
 /**
@@ -33,8 +18,6 @@ export function generateRandomHash(algorithm = 'sha256', secret = Math.random().
 /**
  * compare user password hash with unhashed password
  */
-export function comparePassword(password: string, hashedPw: string): boolean {
-  const [salt, originalHash] = hashedPw.split('$');
-  const hash = sha512(password, salt);
-  return hash === originalHash;
+export function comparePassword(password: string, hashedPw: string): Promise<boolean> {
+  return bcrypt.compare(password, hashedPw);
 }
