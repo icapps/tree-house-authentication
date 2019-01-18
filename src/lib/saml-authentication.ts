@@ -1,31 +1,27 @@
 import * as saml from 'samlify';
 import { IdentityProvider } from 'samlify/types/src/entity-idp';
 import { ServiceProvider } from 'samlify/types/src/entity-sp';
+import { ServiceProviderSettings, IdentityProviderSettings } from 'samlify/types/src/types';
 
 // service proivder
 // Our node applications is the service provider
-export function createServiceProvider(metaData : string) {
-  return saml.ServiceProvider({
-    metadata: metaData,
-  });
+export function createServiceProvider(xmlMetaData: string | Buffer, args: ServiceProviderSettings = {}): ServiceProvider {
+  return saml.ServiceProvider({ ...args, metadata: xmlMetaData });
 }
 
 // The external party
-export function createIdentityProvider(metaData: string) {
-  return saml.IdentityProvider({
-    metadata: metaData,
-  });
+export function createIdentityProvider(xmlMetaData: string | Buffer, args: IdentityProviderSettings = {}): IdentityProvider {
+  return saml.IdentityProvider({ ...args, metadata: xmlMetaData });
 }
-
-// const blablabla = ``;
 
 // Flow
 
 // 1. The user tries to log in to service provider from a browser
 
 // 2. Service provider generates SAML REQUEST
-export function createLoginRequest(sp: ServiceProvider , idp: IdentityProvider) {
-  const { context } = sp.createLoginRequest(idp, 'redirect');
+export function createLoginRequest(sp: ServiceProvider, idp: IdentityProvider, customTagReplacement: string = 'redirect') {
+  console.log('fsd', idp);
+  const { context } = sp.createLoginRequest(idp, customTagReplacement);
   return context;
 }
 
@@ -43,24 +39,16 @@ function verifySAMLRequest() {
 */
 
 // 7. If the verification is successful, the user will be logged in to Zagadat and granted access to all the various resources
-export function validateSAMLResponse(sp: ServiceProvider , idp: IdentityProvider,  samlResponse : string) {
+export async function validateSAMLResponse(sp: ServiceProvider, idp: IdentityProvider, samlResponse: Request) {
 
   // create request from samlresponse (req.body.samlResponse = samlResponse)
-  const req = {
-    body: {
-      samlResponse,
-    },
-  };
-
-  const parsedResponse = sp.parseLoginResponse(idp, 'post', req);
+  const parsedResponse = await sp.parseLoginResponse(idp, 'post', samlResponse);
   return parsedResponse;
 }
 
 // LOGOUT
 
-/*
-export function createSSOLogout(sp: ServiceProvider, idp: IdentityProvider) {
-  // sp.createLogoutRequest(idp);
+export async function createSSOLogout(sp: ServiceProvider, idp: IdentityProvider, user: any, redirectUrl?: string) {
+  const result = await sp.createLogoutRequest(idp, 'redirect', user, redirectUrl);
+  return result;
 }
-
-*/
