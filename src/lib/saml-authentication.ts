@@ -39,9 +39,7 @@ function verifySAMLRequest() {
 */
 
 // 7. If the verification is successful, the user will be logged in to Zagadat and granted access to all the various resources
-export async function validateSAMLResponse(sp: ServiceProvider, idp: IdentityProvider, samlResponse: Request) {
-
-  // create request from samlresponse (req.body.samlResponse = samlResponse)
+export async function parseSAMLResponse(sp: ServiceProvider, idp: IdentityProvider, samlResponse: Request) {
   const parsedResponse = await sp.parseLoginResponse(idp, 'post', samlResponse);
   return parsedResponse;
 }
