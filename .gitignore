@@ -28,3 +28,4 @@ node_modules
 # Yarn
 .yarnclean
 yarn-error.log
+.DS_Store
