@@ -31,7 +31,9 @@ const authenticator = require('tree-house-authentication')
 import * as authenticator from 'tree-house-authentication'
 ```
 
-## Configuration
+## JWT
+
+### Configuration
 
 ```javascript
 const jwtSettings = {
@@ -44,8 +46,6 @@ const jwtSettings = {
 ```
 
 > You can find all possible configuration options at [Github: node-jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)
-
-## JWT
 
 ### createJwt(payload, jwtSettings)
 
@@ -107,6 +107,50 @@ Verify whether a token is valid depending on a provided user secret (returns tru
 
 ```javascript
 const isValidCode = verifyToken('userSecret', 021214);
+```
+
+## SAML
+
+### createLoginRequest(serviceProvider, identityProvider, binding)
+Returns a login url to the identity provider
+
+### parseSAMLResponse(serviceProvider, identityProvider, request)
+Parses the SAML request to a JSON object
+
+### createLogout(serviceProvider, identityProvider, user, redirectUrl?)
+Creates an SSO logout url for the given user (sp initiated)
+
+### createServiceProvider(xmlMetaData: string | Buffer, args: ServiceProviderSettings = {})
+Creates a service provider object to interact with.
+
+### createIdentityProvider(xmlMetaData: string | Buffer, args: IdentityProviderSettings = {})
+Creates an identityProvider object to interact with
+
+### Example
+```javascript
+ const serviceProvider = createServiceProvider(...);
+ const identityProvider = createIdentityProvider(...);
+
+  // Login
+  async (req, res) => {
+    const loginUrl = createLoginRequest(serviceProvider, identityProvider, 'redirect')
+    res.redirect(loginUrl);
+  }
+
+  // The identity provider will send SAML response upon successful authentication
+  // We will validate the response 
+  async (req, res) => {
+    const user = parseSAMLResponse(serviceProvider, identityProvider, req);
+    if (user) { /* business logic} */ } 
+  }
+
+  // Logout
+  async (req, res) => {
+    const logoutUrl = createLogout(serviceProvider, identityProvider, user, redirectUrl)
+    res.redirect(logoutUrl)
+  }
+  
+
 ```
 
 ## Utilities
