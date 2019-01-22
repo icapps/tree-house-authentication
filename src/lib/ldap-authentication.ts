@@ -1,8 +1,8 @@
 import * as ldap from 'ldapjs';
 
-export function createLdapClient(clientOptions, dnString, password) : Promise<ldap.Client>  {
+export function createLdapClient(clientOptions, dnString, password): Promise<ExtendedLdapClient> {
   return new Promise((resolve, reject) => {
-    const client : ldap.Client = ldap.createClient(clientOptions);
+    const client = <ExtendedLdapClient>ldap.createClient(clientOptions);
 
     client.bind(dnString, password, (err) => {
       if (err) reject(err);
@@ -11,13 +11,13 @@ export function createLdapClient(clientOptions, dnString, password) : Promise<ld
   });
 }
 
-// tslint:disable-next-line:prefer-array-literal
-export function searchUser(ldapClient : ldap.Client , dnString: string, filterOptions : ldap.SearchOptions) : Promise<Array<Object>> {
-  return new Promise((resolve , reject) => {
+export function searchUser(ldapClient: ldap.Client, dnString: string, filterOptions: ldap.SearchOptions): Promise<Object[]> {
+  return new Promise((resolve, reject) => {
     const users = [];
 
     ldapClient.search(dnString, filterOptions, (err, result) => {
       if (err) { return reject(err); }
+
       result.on('searchEntry', (entry) => {
         users.push(entry.object);
       });
@@ -31,4 +31,13 @@ export function searchUser(ldapClient : ldap.Client , dnString: string, filterOp
       });
     });
   });
+}
+
+// Due to incorrect ldap definitions
+export interface ExtendedLdapClient extends ldap.Client {
+  url: {
+    protocol: string;
+    host: string;
+    port: number;
+  };
 }
