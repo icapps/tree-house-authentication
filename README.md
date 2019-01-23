@@ -122,11 +122,12 @@ Creates an SSO logout url for the given user (sp initiated)
 
 ### createServiceProvider(xmlMetaData: string | Buffer, args: ServiceProviderSettings = {})
 Creates a service provider object to interact with.
+- [All service provider options](https://samlify.js.org/#/sp)
 
 ### createIdentityProvider(xmlMetaData: string | Buffer, args: IdentityProviderSettings = {})
 Creates an identityProvider object to interact with
+- [All identity provider options](https://samlify.js.org/#/sp)
 
-- [All available samlify options](https://github.com/tngan/samlify)
 
 ### Example
 ```javascript
