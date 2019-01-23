@@ -11,7 +11,7 @@
     "typeRoots": ["node_modules/@types"],
     "declaration": true,
 
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "allowSyntheticDefaultImports": false,
     "removeComments": true,
     "noUnusedLocals": true,
