@@ -126,6 +126,8 @@ Creates a service provider object to interact with.
 ### createIdentityProvider(xmlMetaData: string | Buffer, args: IdentityProviderSettings = {})
 Creates an identityProvider object to interact with
 
+- [All available samlify options](https://github.com/tngan/samlify)
+
 ### Example
 ```javascript
  const serviceProvider = createServiceProvider(...);
@@ -152,6 +154,7 @@ Creates an identityProvider object to interact with
   
 
 ```
+- [All available samlify options](https://github.com/tngan/samlify)
 
 ## Utilities
 
