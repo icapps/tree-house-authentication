@@ -1,5 +1,5 @@
 import * as ldap from 'ldapjs';
-import { createLdapClient, searchUser } from '../src/lib/ldap-authentication';
+import { createLdapClient, searchUser, searchUsers } from '../src/lib/ldap-authentication';
 import { EventEmitter } from 'events';
 
 const clientOptions = {
@@ -35,9 +35,11 @@ describe('ldap-authentication', () => {
       expect(ldapSpy).toHaveBeenCalledTimes(1);
       expect(mockBindFn).toHaveBeenCalledTimes(1);
 
-      expect(newClient.url.protocol).toEqual('ldap:');
-      expect(newClient.url.host).toEqual('ldap.forumsys.com');
-      expect(newClient.url.port).toEqual(389);
+      expect(newClient.url).toMatchObject({
+        protocol: 'ldap:',
+        host: 'ldap.forumsys.com',
+        port: 389,
+      });
     });
 
     it('Should throw an error when it cannot connect with the server', async () => {
@@ -90,8 +92,7 @@ describe('ldap-authentication', () => {
         emitter.emit('end', 'ok');
       },         200);
 
-      const users = await searchUser(client, dnString, filter);
-
+      const users = await searchUsers(client, dnString, filter);
       expect(users).toContainEqual(expectedToFind);
     });
 
@@ -110,7 +111,7 @@ describe('ldap-authentication', () => {
 
       expect.assertions(1);
       try {
-        await searchUser(client, dnString, filter);
+        await searchUsers(client, dnString, filter);
       } catch (error) {
         expect(error).toBeInstanceOf(Error);
       }
@@ -123,13 +124,14 @@ describe('ldap-authentication', () => {
       };
 
       const emitter = new EventEmitter();
-      mockSearchFn.mockImplementationOnce((_dnString, _filterOptions, searchCallbackFn) => searchCallbackFn(new Error()));
+      mockSearchFn.mockImplementationOnce((_dnString, _filterOptions, searchCallbackFn) => searchCallbackFn(new Error('No objects found')));
 
-      expect.assertions(1);
+      expect.assertions(2);
       try {
-        await searchUser(client, dnString, filter);
+        await searchUsers(client, dnString, filter);
       } catch (error) {
         expect(error).toBeInstanceOf(Error);
+        expect(error.message).toEqual('No objects found');
       }
     });
   });

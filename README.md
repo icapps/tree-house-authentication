@@ -109,6 +109,36 @@ Verify whether a token is valid depending on a provided user secret (returns tru
 const isValidCode = verifyToken('userSecret', 021214);
 ```
 
+## LDAP
+
+### CreateLdapClient(clientOptions, dnString, password)
+- [All available ldapClient options](http://ldapjs.org/client.html)
+
+### searchUsers(ldapClient, dnString, filterOptions)
+- [All available filter options](http://ldapjs.org/client.html)
+
+```javascript
+const clientOptions = {
+  url: 'ldap://ldap.forumsys.com',
+  port: '389',
+};
+const dnString = 'cn=read-only-admin,dc=example,dc=com';
+const password = 'password';
+
+// create a client instance that is connected with the directory server
+const client = createLdapClient(clientOptions, dnString, password);
+
+const searchDn = 'dc=example,dc=com';
+const filterOptions = {
+        filter: '(objectClass=*)',
+        scope: 'sub',
+      };
+
+//Search users in the directory server
+const users = await searchUsers(client,searchDn, filterOptions)
+```
+
+
 ## Utilities
 
 ### generateRandomHash(algorithm (optional), secret (optional))
