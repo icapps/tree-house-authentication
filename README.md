@@ -111,12 +111,18 @@ const isValidCode = verifyToken('userSecret', 021214);
 
 ## LDAP
 
+
+
 ### CreateLdapClient(clientOptions, dnString, password)
 - [All available ldapClient options](http://ldapjs.org/client.html)
+
+WARNING !! : unbind function does not work in node 10
+See (https://github.com/joyent/node-ldapjs/issues/483)
 
 ### searchUsers(ldapClient, dnString, filterOptions)
 - [All available filter options](http://ldapjs.org/client.html)
 
+### Example
 ```javascript
 const clientOptions = {
   url: 'ldap://ldap.forumsys.com',
