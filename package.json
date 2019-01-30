@@ -1,6 +1,6 @@
 {
   "name": "tree-house-authentication",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Tree House Authentication module",
   "main": "build/index.js",
   "types": "build/index.d.ts",
