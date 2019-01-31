@@ -1,5 +1,5 @@
 import * as ldap from 'ldapjs';
-import { createLdapClient, searchUser, searchUsers } from '../src/lib/ldap-authentication';
+import { createLdapClient, searchUsers, ExtendedLdapClient } from '../src/lib/ldap-authentication';
 import { EventEmitter } from 'events';
 
 const clientOptions = {
@@ -56,7 +56,7 @@ describe('ldap-authentication', () => {
   });
 
   describe('searchUser', () => {
-    let client;
+    let client: ExtendedLdapClient;
 
     beforeAll(async () => {
       client = await createLdapClient(clientOptions, dnString, password);
@@ -65,7 +65,7 @@ describe('ldap-authentication', () => {
     it('Should return the requested objects upon matching filter and permissions of client', async () => {
       const expectedToFind = {
         dn: 'uid=galieleo,dc=example,dc=com',
-        controls: [],
+        controls: <any[]>[],
         objectClass: ['inetOrgPerson', 'organizationalPerson', 'person', 'top'],
         cn: 'Galileo Galilei',
         sn: 'Galilei',
@@ -123,7 +123,6 @@ describe('ldap-authentication', () => {
         scope: 'sub',
       };
 
-      const emitter = new EventEmitter();
       mockSearchFn.mockImplementationOnce((_dnString, _filterOptions, searchCallbackFn) => searchCallbackFn(new Error('No objects found')));
 
       expect.assertions(2);

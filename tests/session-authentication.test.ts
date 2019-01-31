@@ -1,5 +1,3 @@
-import * as session from 'express-session';
-import { DEFAULT_SESSION_CONFIG } from '../src/config/session.config';
 import { getSession } from '../src';
 
 describe('#Session authentication', () => {

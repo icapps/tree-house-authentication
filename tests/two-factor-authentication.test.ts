@@ -13,7 +13,7 @@ describe('#Two factor authentication', () => {
   });
 
   it('Should throw an error when QR generation fails', async () => {
-    const qrSpy = jest.spyOn(qrcode, 'toDataURL').mockImplementationOnce((param, callback) => callback(new Error('Something wong!')));
+    const qrSpy = jest.spyOn(qrcode, 'toDataURL').mockImplementationOnce((_param, callback) => callback(new Error('Something wong!')));
     expect.assertions(3);
     try {
       await generateQrCode();

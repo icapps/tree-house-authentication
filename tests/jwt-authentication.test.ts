@@ -1,5 +1,3 @@
-import * as jsonwebtoken from 'jsonwebtoken';
-import { DEFAULT_JWT_CONFIG } from '../src/config/jwt.config';
 import { createJwt, authenticateJwt, decodeJwt } from '../src';
 
 const validJwtConfiguration = {
@@ -23,7 +21,7 @@ const user = {
   lastName: 'Van Geertruy',
 };
 
-let token = null;
+let token: any = null;
 
 describe('#Jwt authentication', () => {
   beforeAll(async () => {

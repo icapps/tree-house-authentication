@@ -1,5 +1,4 @@
 import { getHashedPassword, comparePassword, generateRandomHash } from '../src';
-import { compare } from 'bcrypt';
 
 const user = {
   password: 'myPassword',
