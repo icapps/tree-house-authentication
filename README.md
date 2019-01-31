@@ -5,7 +5,7 @@ Authentication module written in TypeScript providing authentication utilities a
 [![npm version](https://badge.fury.io/js/tree-house-authentication.svg)](https://badge.fury.io/js/tree-house-authentication)
 [![Dependencies](https://david-dm.org/icapps/tree-house-authentication.svg)](https://david-dm.org/icapps/tree-house-authentication.svg)
 [![Build Status](https://travis-ci.org/icapps/tree-house-authentication.svg?branch=master)](https://travis-ci.org/icapps/tree-house-authentication)
-[![Coverage Status](https://coveralls.io/repos/github/icapps/tree-house-authentication/badge.svg)](https://coveralls.io/github/icapps/tree-house-authentication)
+[![Coverage Status](https://coveralls.io/repos/github/icapps/tree-house-authentication/badge.svg)](https://coveralls.io/github/icapps/tree-house-authentication) [![Greenkeeper badge](https://badges.greenkeeper.io/icapps/tree-house-authentication.svg)](https://greenkeeper.io/)
 
 ## Installation
 
