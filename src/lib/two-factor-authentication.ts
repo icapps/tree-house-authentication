@@ -14,7 +14,7 @@ export function generate2FAKey(options?: speakeasy.GenerateSecretOptions): speak
 export function generateQrCode(options?: speakeasy.GenerateSecretOptions): Promise<QrCodeResponse> {
   return new Promise((resolve, reject) => {
     const key = generate2FAKey(options);
-    qrcode.toDataURL(key.otpauth_url, (error, imageData) => {
+    qrcode.toDataURL(key.otpauth_url, {}, (error, imageData) => {
       if (error) return reject(error);
       return resolve({ imageData, secret: key.base32, url: key.otpauth_url });
     });

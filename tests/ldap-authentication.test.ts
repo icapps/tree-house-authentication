@@ -13,7 +13,8 @@ const password = 'password';
 describe('ldap-authentication', () => {
   const mockBindFn = jest.fn((_username, _password, callbackFn) => callbackFn());
   const mockSearchFn = jest.fn((_ldapClient, _dnString, _filterOptions, searchCallbackFn) => searchCallbackFn());
-  const ldapSpy = jest.spyOn(ldap, 'createClient').mockReturnValue({
+
+  const ldapSpy = jest.spyOn(ldap, 'createClient').mockReturnValue(<any>{
     url: {
       protocol: 'ldap:',
       host: 'ldap.forumsys.com',
@@ -90,7 +91,7 @@ describe('ldap-authentication', () => {
       setTimeout(() => {
         emitter.emit('searchEntry', entry);
         emitter.emit('end', 'ok');
-      },         200);
+      }, 200);
 
       const users = await searchUsers(client, dnString, filter);
       expect(users).toContainEqual(expectedToFind);
@@ -107,7 +108,7 @@ describe('ldap-authentication', () => {
 
       setTimeout(() => {
         emitter.emit('error', new Error('Bad search request'));
-      },         400);
+      }, 400);
 
       expect.assertions(1);
       try {
