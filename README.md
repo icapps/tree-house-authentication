@@ -12,23 +12,23 @@ Authentication module written in TypeScript providing authentication utilities a
 Install via npm
 
 ```shell
-npm install tree-house-authentication
+npm install @icapps/tree-house-authentication
 ```
 
 or via yarn
 
 ```shell
-yarn add tree-house-authentication
+yarn add @icapps/tree-house-authentication
 ```
 
 ## Usage
 
 ```javascript
-const authenticator = require('tree-house-authentication')
+const authenticator = require('@icapps/tree-house-authentication')
 ```
 
 ```javascript
-import * as authenticator from 'tree-house-authentication'
+import * as authenticator from '@icapps/tree-house-authentication'
 ```
 
 ## JWT
@@ -114,15 +114,18 @@ const isValidCode = verifyToken('userSecret', 021214);
 
 
 ### CreateLdapClient(clientOptions, dnString, password)
+
 - [All available ldapClient options](http://ldapjs.org/client.html)
 
 WARNING !! : unbind function does not work in node 10
 See (https://github.com/joyent/node-ldapjs/issues/483)
 
 ### searchUsers(ldapClient, dnString, filterOptions)
+
 - [All available filter options](http://ldapjs.org/client.html)
 
-### Example
+#### Example
+
 ```javascript
 const clientOptions = {
   url: 'ldap://ldap.forumsys.com',
@@ -147,24 +150,31 @@ const users = await searchUsers(client,searchDn, filterOptions)
 ## SAML
 
 ### createLoginRequest(serviceProvider, identityProvider, binding)
+
 Returns a login url to the identity provider
 
 ### parseSAMLResponse(serviceProvider, identityProvider, request)
+
 Parses the SAML request to a JSON object
 
 ### createLogout(serviceProvider, identityProvider, user, redirectUrl?)
+
 Creates an SSO logout url for the given user (sp initiated)
 
 ### createServiceProvider(xmlMetaData: string | Buffer, args: ServiceProviderSettings = {})
+
 Creates a service provider object to interact with.
+
 - [All service provider options](https://samlify.js.org/#/sp)
 
 ### createIdentityProvider(xmlMetaData: string | Buffer, args: IdentityProviderSettings = {})
+
 Creates an identityProvider object to interact with
+
 - [All identity provider options](https://samlify.js.org/#/sp)
 
+#### Example
 
-### Example
 ```javascript
  const serviceProvider = createServiceProvider(...);
  const identityProvider = createIdentityProvider(...);
@@ -176,10 +186,10 @@ Creates an identityProvider object to interact with
   }
 
   // The identity provider will send SAML response upon successful authentication
-  // We will validate the response 
+  // We will validate the response
   async (req, res) => {
     const user = parseSAMLResponse(serviceProvider, identityProvider, req);
-    if (user) { /* business logic} */ } 
+    if (user) { /* business logic} */ }
   }
 
   // Logout
@@ -187,9 +197,10 @@ Creates an identityProvider object to interact with
     const logoutUrl = createLogout(serviceProvider, identityProvider, user, redirectUrl)
     res.redirect(logoutUrl)
   }
-  
+
 
 ```
+
 - [All available samlify options](https://github.com/tngan/samlify)
 
 ## Utilities
@@ -205,6 +216,14 @@ Returns a hashed password. (**Asynchronous**)
 ### comparePassword(password, hashedPw)
 
 Check whether a password is valid compared with a hashed password. (**Asynchronous**)
+
+### hashPassword(password, options = { algorithm, key, iv})
+
+Hash a password. (**Asynchronous**)
+
+### dehashPassword(password, options = { algorithm, key, iv})
+
+Dehash a password. (**Asynchronous**)
 
 ## Tests
 

@@ -1,5 +1,5 @@
 {
-  "name": "tree-house-authentication",
+  "name": "@icapps/tree-house-authentication",
   "version": "3.1.4",
   "description": "Tree House Authentication module",
   "main": "build/index.js",
