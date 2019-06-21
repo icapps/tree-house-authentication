@@ -21,3 +21,33 @@ export function generateRandomHash(algorithm = 'sha256', secret = Math.random().
 export function comparePassword(password: string, hashedPw: string): Promise<boolean> {
   return bcrypt.compare(password, hashedPw);
 }
+
+/**
+ * Hash password
+ */
+export function hashPassword(password: string, { algorithm, key, iv }: IHashOptions): string {
+  const ivBuffer = new Buffer(iv);
+
+  const encryptor = crypto.createCipheriv(algorithm, key, ivBuffer);
+  encryptor.setEncoding('hex');
+  encryptor.write(password);
+  encryptor.end();
+  return encryptor.read().toString();
+}
+
+/**
+ * Dehash password
+ */
+export function dehashPassword(password: string, { algorithm, key, iv }: IHashOptions): string {
+  const ivBuffer = new Buffer(iv);
+  const decryptor = crypto.createDecipheriv(algorithm, key, ivBuffer);
+  const decryptedText = decryptor.update(password, 'hex');
+
+  return `${decryptedText}${decryptor.final('utf-8')}`;
+}
+
+export interface IHashOptions {
+  algorithm: string;
+  key: string;
+  iv: string;
+}
