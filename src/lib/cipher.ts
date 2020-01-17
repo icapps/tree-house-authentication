@@ -26,7 +26,7 @@ export function comparePassword(password: string, hashedPw: string): Promise<boo
  * Hash password
  */
 export function hashPassword(password: string, { algorithm, key, iv }: IHashOptions): string {
-  const ivBuffer = new Buffer(iv);
+  const ivBuffer = Buffer.from(iv);
 
   const encryptor = crypto.createCipheriv(algorithm, key, ivBuffer);
   encryptor.setEncoding('hex');
@@ -39,7 +39,7 @@ export function hashPassword(password: string, { algorithm, key, iv }: IHashOpti
  * Dehash password
  */
 export function dehashPassword(password: string, { algorithm, key, iv }: IHashOptions): string {
-  const ivBuffer = new Buffer(iv);
+  const ivBuffer = Buffer.from(iv);
   const decryptor = crypto.createDecipheriv(algorithm, key, ivBuffer);
   const decryptedText = decryptor.update(password, 'hex');
 
