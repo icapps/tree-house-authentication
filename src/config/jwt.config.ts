@@ -1,5 +1,7 @@
+import { Algorithm } from 'jsonwebtoken';
+
 export const DEFAULT_JWT_CONFIG = {
-  algorithm: 'HS256',
+  algorithm: 'HS256' as Algorithm,
   expiresIn: '7d',
   audience: 'TREEHOUSE-AUTH',
   issuer: 'treehouse-authentication',

@@ -46,6 +46,6 @@ export async function parseSAMLResponse(sp: ServiceProvider, idp: IdentityProvid
 /**
  * Creates Single logout url for  a user (service provider initiated).
  */
-export async function createLogout(sp: ServiceProvider, idp: IdentityProvider, user: any, redirectUrl?: string) {
-  return await sp.createLogoutRequest(idp, 'redirect', user, redirectUrl);
+export function createLogout(sp: ServiceProvider, idp: IdentityProvider, user: any, redirectUrl?: string) {
+  return sp.createLogoutRequest(idp, 'redirect', user, redirectUrl);
 }
