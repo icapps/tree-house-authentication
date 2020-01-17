@@ -1,7 +1,8 @@
+import { Algorithm } from 'jsonwebtoken';
 import { createJwt, authenticateJwt, decodeJwt } from '../src';
 
 const validJwtConfiguration = {
-  algorithm: 'HS256',
+  algorithm: 'HS256' as Algorithm,
   expiresIn: '7d',
   audience: 'TREEHOUSE-AUTH',
   issuer: 'treehouse-authentication',
@@ -9,7 +10,7 @@ const validJwtConfiguration = {
 };
 
 const invalidJwtConfiguration = {
-  algorithm: 'HS256',
+  algorithm: 'HS256' as Algorithm,
   expiresIn: '1q',
   audience: 'TREEHOUSE-AUTH',
   issuer: 'treehouse-authentication',
