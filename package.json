@@ -26,7 +26,7 @@
     "jsonwebtoken": "~8.5.1",
     "ldapjs": "~1.0.2",
     "qrcode": "~1.4.4",
-    "samlify": "~2.6.2",
+    "samlify": "~2.7.0",
     "speakeasy": "~2.0.0"
   },
   "devDependencies": {
