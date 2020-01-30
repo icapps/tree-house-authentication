@@ -43,7 +43,7 @@
     "np": "~5.2.1",
     "pre-commit": "~1.2.2",
     "supertest": "~4.0.2",
-    "ts-jest": "~24.3.0",
+    "ts-jest": "~25.1.0",
     "tslint-config-airbnb": "~5.11.2",
     "tslint": "~5.20.1",
     "typescript": "~3.7.5"
