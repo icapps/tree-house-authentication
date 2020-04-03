@@ -1,5 +1,5 @@
-import { sign as jwtSign, verify as jwtVerify, decode as jwtDecode, Secret, SignOptions } from 'jsonwebtoken';
-import { DEFAULT_JWT_CONFIG } from '../config/jwt.config';
+import { sign as jwtSign, verify as jwtVerify, decode as jwtDecode, Secret, SignOptions, DecodeOptions } from 'jsonwebtoken';
+import { DEFAULT_JWT_CONFIG, DEFAULT_JWT_DECODE_OPTIONS } from '../config/jwt.config';
 
 /**
  * Create a JWT token
@@ -21,8 +21,8 @@ export function authenticateJwt(token: string, options: CustomSignOptions = DEFA
 /**
  * Decode a json webtoken without validation
  */
-export function decodeJwt(token: string): null | object | string {
-  return jwtDecode(token);
+export function decodeJwt(token: string, options: DecodeOptions = DEFAULT_JWT_DECODE_OPTIONS): null | { [key: string]: any } | string {
+  return jwtDecode(token, options);
 }
 
 /**
@@ -40,7 +40,7 @@ function signJwt(payload: Object, secretOrKey: Secret, jwtSettings: SignOptions)
 /**
  * Verify whether the provided jwt token is valid and return decoded information
  */
-function verifyJwt(token: string, secretOrKey: string | Buffer, jwtSettings: SignOptions): Promise<{}> {
+export function verifyJwt(token: string, secretOrKey: string | Buffer, jwtSettings: SignOptions): Promise<{}> {
   return new Promise((resolve, reject) => {
     jwtVerify(token, secretOrKey, jwtSettings, (error, decoded) => {
       if (error) reject(`Something went wrong trying to verify the json webtoken. Actual error: ${error}`);

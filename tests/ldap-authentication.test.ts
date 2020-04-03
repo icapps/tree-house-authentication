@@ -79,7 +79,7 @@ describe('ldap-authentication', () => {
       };
 
       const dnString = 'dc=example,dc=com';
-      const filter = {
+      const filter: ldap.SearchOptions = {
         filter: '(objectClass=*)',
         scope: 'sub',
       };
@@ -91,7 +91,7 @@ describe('ldap-authentication', () => {
       setTimeout(() => {
         emitter.emit('searchEntry', entry);
         emitter.emit('end', 'ok');
-      }, 200);
+      },         200);
 
       const users = await searchUsers(client, dnString, filter);
       expect(users).toContainEqual(expectedToFind);
@@ -99,7 +99,7 @@ describe('ldap-authentication', () => {
 
     it('Should return an error on bad searchrequest', async () => {
       const dnString = '';
-      const filter = {
+      const filter: ldap.SearchOptions = {
         scope: 'sub',
       };
 
@@ -108,7 +108,7 @@ describe('ldap-authentication', () => {
 
       setTimeout(() => {
         emitter.emit('error', new Error('Bad search request'));
-      }, 400);
+      },         400);
 
       expect.assertions(1);
       try {
@@ -120,7 +120,7 @@ describe('ldap-authentication', () => {
 
     it('Should return an error when it cannot get a search result', async () => {
       const dnString = '';
-      const filter = {
+      const filter: ldap.SearchOptions = {
         scope: 'sub',
       };
 
