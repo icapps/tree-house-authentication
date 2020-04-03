@@ -7,3 +7,8 @@ export const DEFAULT_JWT_CONFIG = {
   issuer: 'treehouse-authentication',
   secretOrKey: '5kZxE|gZu1ODB183s772)/3:l_#5hU3Gn5O|2ux3&lhN@LQ6g+"i$zqB_C<6',
 };
+
+export const DEFAULT_JWT_DECODE_OPTIONS = {
+  complete: false,
+  json: false,
+};
