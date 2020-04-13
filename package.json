@@ -24,7 +24,7 @@
     "bcrypt": "~3.0.8",
     "express-session": "~1.17.0",
     "jsonwebtoken": "~8.5.1",
-    "jwks-rsa": "~1.7.0",
+    "jwks-rsa": "~1.8.0",
     "ldapjs": "~1.0.2",
     "openid-client": "~3.14.1",
     "qrcode": "~1.4.4",
