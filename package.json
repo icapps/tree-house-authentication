@@ -21,37 +21,37 @@
     "lint"
   ],
   "dependencies": {
-    "bcrypt": "~3.0.8",
-    "express-session": "~1.17.0",
+    "bcrypt": "~5.0.1",
+    "express-session": "~1.17.2",
     "jsonwebtoken": "~8.5.1",
-    "jwks-rsa": "~1.7.0",
-    "ldapjs": "~1.0.2",
-    "openid-client": "~3.14.1",
+    "jwks-rsa": "~2.0.4",
+    "ldapjs": "~2.3.0",
+    "openid-client": "~4.7.4",
     "qrcode": "~1.4.4",
-    "samlify": "~2.7.1",
+    "samlify": "~2.7.7",
     "speakeasy": "~2.0.0"
   },
   "devDependencies": {
-    "@types/bcrypt": "~3.0.0",
-    "@types/express-session": "~1.17.0",
-    "@types/jest": "~25.1.5",
-    "@types/jsonwebtoken": "~8.3.8",
-    "@types/ldapjs": "~1.0.6",
-    "@types/qrcode": "~1.3.4",
-    "@types/speakeasy": "~2.0.5",
-    "coveralls": "~3.0.11",
-    "jest": "~25.2.7",
-    "node-mocks-http": "~1.8.1",
-    "np": "~5.2.1",
+    "@types/bcrypt": "~5.0.0",
+    "@types/express-session": "~1.17.4",
+    "@types/jest": "~26.0.24",
+    "@types/jsonwebtoken": "~8.5.4",
+    "@types/ldapjs": "~2.2.0",
+    "@types/qrcode": "~1.4.1",
+    "@types/speakeasy": "~2.0.6",
+    "coveralls": "~3.1.1",
+    "jest": "~27.0.6",
+    "node-mocks-http": "~1.10.1",
+    "np": "~7.5.0",
     "pre-commit": "~1.2.2",
-    "supertest": "~4.0.2",
-    "ts-jest": "~25.3.0",
+    "supertest": "~6.1.4",
+    "ts-jest": "~27.0.4",
     "tslint-config-airbnb": "~5.11.2",
-    "tslint": "~6.1.1",
-    "typescript": "~3.8.3"
+    "tslint": "~6.1.3",
+    "typescript": "~4.3.5"
   },
   "engines": {
-    "node": ">=10.13.0"
+    "node": ">=14.x"
   },
   "directories": {
     "test": "test"
