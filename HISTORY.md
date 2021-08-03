@@ -7,3 +7,10 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 - All functions fully tested
+
+## [4.0.0] - 2021-08-03
+
+### Changed
+
+- Bump dependencies
+- Support for node 14
