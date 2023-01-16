@@ -1,13 +1,13 @@
 import * as ldap from 'ldapjs';
-import { createLdapClient, searchUsers, ExtendedLdapClient } from '../src/lib/ldap-authentication';
 import { EventEmitter } from 'events';
+import { createLdapClient, searchUsers, ExtendedLdapClient } from '../src/lib/ldap-authentication';
 
 const clientOptions = {
   url: 'ldap://ldap.forumsys.com',
   port: '389',
 };
 
-const dnString = 'cn=read-only-admin,dc=example,dc=com';
+let dnString = 'cn=read-only-admin,dc=example,dc=com';
 const password = 'password';
 
 describe('ldap-authentication', () => {
@@ -78,7 +78,7 @@ describe('ldap-authentication', () => {
         object: expectedToFind,
       };
 
-      const dnString = 'dc=example,dc=com';
+      dnString = 'dc=example,dc=com';
       const filter: ldap.SearchOptions = {
         filter: '(objectClass=*)',
         scope: 'sub',
@@ -91,14 +91,14 @@ describe('ldap-authentication', () => {
       setTimeout(() => {
         emitter.emit('searchEntry', entry);
         emitter.emit('end', 'ok');
-      },         200);
+      }, 200);
 
       const users = await searchUsers(client, dnString, filter);
       expect(users).toContainEqual(expectedToFind);
     });
 
     it('Should return an error on bad searchrequest', async () => {
-      const dnString = '';
+      dnString = '';
       const filter: ldap.SearchOptions = {
         scope: 'sub',
       };
@@ -108,7 +108,7 @@ describe('ldap-authentication', () => {
 
       setTimeout(() => {
         emitter.emit('error', new Error('Bad search request'));
-      },         400);
+      }, 400);
 
       expect.assertions(1);
       try {
@@ -119,7 +119,7 @@ describe('ldap-authentication', () => {
     });
 
     it('Should return an error when it cannot get a search result', async () => {
-      const dnString = '';
+      dnString = '';
       const filter: ldap.SearchOptions = {
         scope: 'sub',
       };

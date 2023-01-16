@@ -50,7 +50,7 @@ describe('#Jwt authentication', () => {
 
   it('Should authenticate a valid JWT token', async () => {
     const payload = await authenticateJwt(token, validJwtConfiguration);
-    expect(payload).not.toBeNull;
+    expect(payload).not.toBeNull();
     expect(payload).toHaveProperty('iat');
     expect(payload).toHaveProperty('exp');
     expect(payload).toHaveProperty('aud');
@@ -59,7 +59,7 @@ describe('#Jwt authentication', () => {
 
   it('Should authenticate a valid JWT token with default configuration', async () => {
     const payload = await authenticateJwt(token);
-    expect(payload).not.toBeNull;
+    expect(payload).not.toBeNull();
     expect(payload).toHaveProperty('iat');
     expect(payload).toHaveProperty('exp');
     expect(payload).toHaveProperty('aud');
@@ -90,7 +90,7 @@ describe('#Jwt authentication', () => {
 
   it('Should decode a valid JWT token', async () => {
     const payload = await decodeJwt(token);
-    expect(payload).not.toBeNull;
+    expect(payload).not.toBeNull();
     expect(payload).toHaveProperty('iat');
     expect(payload).toHaveProperty('exp');
     expect(payload).toHaveProperty('aud');

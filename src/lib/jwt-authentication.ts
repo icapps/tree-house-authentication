@@ -31,6 +31,7 @@ export function decodeJwt(token: string, options: DecodeOptions = DEFAULT_JWT_DE
 function signJwt(payload: Object, secretOrKey: Secret, jwtSettings: SignOptions): Promise<{}> {
   return new Promise((resolve, reject) => {
     jwtSign(payload, secretOrKey, jwtSettings, (error, jwtToken) => {
+      // eslint-disable-next-line prefer-promise-reject-errors
       if (error) reject(`Something went wrong trying to create a json webtoken. Actual error: ${error}`);
       resolve(jwtToken);
     });
@@ -43,6 +44,7 @@ function signJwt(payload: Object, secretOrKey: Secret, jwtSettings: SignOptions)
 export function verifyJwt(token: string, secretOrKey: string | Buffer, jwtSettings: SignOptions): Promise<{}> {
   return new Promise((resolve, reject) => {
     jwtVerify(token, secretOrKey, jwtSettings, (error, decoded) => {
+      // eslint-disable-next-line prefer-promise-reject-errors
       if (error) reject(`Something went wrong trying to verify the json webtoken. Actual error: ${error}`);
       resolve(decoded);
     });
