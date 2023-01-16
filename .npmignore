@@ -26,6 +26,9 @@ jest.config.js
 # Coverage directory used by tools like istanbul
 coverage/
 
+# Github
+.github
+
 # NPM
 .npm
 .npmignore
