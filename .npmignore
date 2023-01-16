@@ -38,9 +38,6 @@ package-lock.json
 yarn.lock
 yarn-error.log
 
-# Travis
-.travis.yml
-
 # Licenses
 CODE_OF_CONDUCT.md
 CONTRIBUTING.md

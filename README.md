@@ -3,9 +3,7 @@
 Authentication module written in TypeScript providing authentication utilities and JWT methods.
 
 [![npm version](https://badge.fury.io/js/tree-house-authentication.svg)](https://badge.fury.io/js/tree-house-authentication)
-[![Dependencies](https://david-dm.org/icapps/tree-house-authentication.svg)](https://david-dm.org/icapps/tree-house-authentication.svg)
-[![Build Status](https://travis-ci.com/icapps/tree-house-authentication.svg?branch=master)](https://travis-ci.com/icapps/tree-house-authentication)
-[![Coverage Status](https://coveralls.io/repos/github/icapps/tree-house-authentication/badge.svg)](https://coveralls.io/github/icapps/tree-house-authentication)
+![CI](https://github.com/icapps/tree-house-authentication/workflows/Continuous%20Integration/badge.svg?branch=master)
 
 ## Installation
 
