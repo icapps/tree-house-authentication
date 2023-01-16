@@ -1,6 +1,6 @@
-import { generateQrCode, verifyToken } from '../src/lib/two-factor-authentication';
 import * as speakeasy from 'speakeasy';
 import * as qrcode from 'qrcode';
+import { generateQrCode, verifyToken } from '../src/lib/two-factor-authentication';
 
 describe('#Two factor authentication', () => {
   it('Should return a valid qr code and user secret', async () => {
@@ -13,7 +13,8 @@ describe('#Two factor authentication', () => {
   });
 
   it('Should throw an error when QR generation fails', async () => {
-    const qrSpy = jest.spyOn(qrcode, 'toDataURL').mockImplementationOnce((_param, { }, callback) => callback(new Error('Something wong!'), null));
+    // eslint-disable-next-line no-empty-pattern
+    const qrSpy = jest.spyOn(qrcode, 'toDataURL').mockImplementationOnce((_param, {}, callback) => callback(new Error('Something wong!'), ''));
     expect.assertions(3);
     try {
       await generateQrCode();

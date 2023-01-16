@@ -9,7 +9,7 @@ export function createLdapClient(clientOptions : ldap.ClientOptions, dnString : 
 
     client.bind(dnString, password, (err) => {
       if (err) return reject(err);
-      resolve(client);
+      return resolve(client);
     });
   });
 }
@@ -28,11 +28,9 @@ export function searchUsers(ldapClient: ldap.Client, dnString: string, filterOpt
         users.push(entry.object);
       });
 
-      result.on('error', (err) => {
-        return reject(err);
-      });
+      result.on('error', (searchErr) => reject(searchErr));
 
-      result.on('end', () => {
+      return result.on('end', () => {
         resolve(users);
       });
     });

@@ -1,5 +1,4 @@
-export const serviceProviderConfig = (entityID: string, verifyLocationUrl: string, options: ServiceProviderOptions = {}) => {
-  return `
+export const serviceProviderConfig = (entityID: string, verifyLocationUrl: string, options: ServiceProviderOptions = {}) => `
   <?xml version="1.0"?>
     <md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
                      validUntil="${options.expirationDate || '2022-01-18T00:00:00Z'}"
@@ -13,7 +12,6 @@ export const serviceProviderConfig = (entityID: string, verifyLocationUrl: strin
       </md:SPSSODescriptor>
     </md:EntityDescriptor>
 `;
-};
 
 // Interfaces
 export interface ServiceProviderOptions {
